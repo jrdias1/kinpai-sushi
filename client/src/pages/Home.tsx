@@ -220,10 +220,10 @@ export default function Home() {
 
         {/* Content */}
         <div className="relative z-10 container max-w-4xl mx-auto px-4 text-center pt-32">
-          <h1 className="text-8xl md:text-9xl font-bold mb-12 text-[#F5F1E8] leading-tight drop-shadow-lg">
+          <h1 className="text-5xl md:text-6xl font-bold mb-8 text-[#F5F1E8] leading-tight drop-shadow-lg">
             Kinpai <span className="gold-accent">Sushi</span>
           </h1>
-          <p className="text-xl md:text-2xl text-[#D4C5B9] mb-12 font-light drop-shadow">
+          <p className="text-base md:text-lg text-[#D4C5B9] mb-12 font-light drop-shadow">
             Experiência gastronômica de luxo em Petrópolis
           </p>
 
