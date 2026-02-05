@@ -1,58 +1,26 @@
-import { ChevronLeft, Instagram, Facebook, Star, Award, Users, Home, Smile } from "lucide-react";
+import { ChevronLeft, ChevronRight, Instagram, Facebook, Star, MapPin, Phone, Clock } from "lucide-react";
 import { useLocation } from "wouter";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import HeroCarousel from "@/components/HeroCarousel";
 
 export default function History() {
   const [, navigate] = useLocation();
-  const [activeSection, setActiveSection] = useState<string>("historia");
+  const [activeTab, setActiveTab] = useState(0);
 
-  const sections = [
-    { id: "historia", label: "História", icon: "📖" },
-    { id: "ambiente", label: "Ambiente", icon: "🏮" },
-    { id: "chef", label: "Chef", icon: "👨‍🍳" },
-    { id: "equipe", label: "Equipe", icon: "👥" },
-    { id: "nea", label: "Nea", icon: "👩" },
-    { id: "kinpai", label: "20 Anos", icon: "🎉" },
+  const carouselImages = [
+    "/images/hero-sushi-premium.jpg",
+    "/images/carousel-1-sushi-close.jpg",
+    "/images/carousel-2-chef-hands.jpg",
+    "/images/carousel-3-plating.jpg",
   ];
 
-  const historiContent = {
-    anos: "18 Anos de Tradição",
-    titulo: "Com 18 anos de dedicação, o Kinpai é um restaurante que celebra a autenticidade da culinária japonesa",
-    descricao: "Combinando sabores clássicos com um toque contemporâneo, cada prato é uma verdadeira viagem ao Japão. Preparado com ingredientes frescos e técnicas que valorizam a essência da gastronomia Oriental, o Kinpai se consolidou como referência em sushi premium em Petrópolis."
-  };
-
-  const ambienteContent = {
-    titulo: "Sofisticação e Prazer Gastronômico",
-    descricao: "Nossos ambientes são um convite ao refinamento e à excelência culinária. A cada detalhe, buscamos criar uma atmosfera de luxo contemporâneo onde a tradição japonesa encontra o conforto moderno.",
-    subDescricao: "Venha vivenciar uma experiência única de sabores, elegância e momentos inesquecíveis."
-  };
-
-  const chefContent = {
-    titulo: "Arte e Expertise",
-    descricao: "Nosso chef traz técnicas refinadas e um profundo conhecimento da culinária japonesa. Com seleção rigorosa de ingredientes importados, cada prato é preparado com dedicação absoluta para proporcionar uma experiência gastronômica extraordinária.",
-    subTitulo: "Qualidade em Cada Detalhe",
-    subDescricao: "A paixão pelo ofício reflete em cada movimento, em cada corte, em cada combinação de sabores que chega até sua mesa."
-  };
-
-  const equipContent = {
-    titulo: "O Time Kinpai",
-    descricao: "Esse é o time Kinpai, responsável pelo alto padrão que faz a diferença. São profissionais qualificados e dedicados que garantem a excelência do nosso restaurante.",
-    destaque: "Agradecemos a cada um pelo trabalho impecável que sustenta nossa reputação."
-  };
-
-  const neaContent = {
-    titulo: "Nea - A Visionária",
-    subtitulo: "Uma paraibana, bem petropolitana e quase japonesa!",
-    descricao: "Morando em Petrópolis há 30 anos e com mais de 25 anos de experiência em restaurante japonês, Nea traz ao Kinpai sua paixão pela culinária com muita criatividade, alegria e a administração de uma equipe premium com atendimento personalizado.",
-    destaque: "São quase 18 anos se dedicando ao Kinpai e à satisfação dos seus clientes.",
-    cta: "Conte uma história sua com a Nea!"
-  };
-
-  const kinpaiContent = {
-    titulo: "20 Anos de Excelência",
-    descricao: "Celebramos duas décadas de tradição, qualidade e dedicação. Cada ano representa um compromisso renovado com a excelência culinária e a satisfação dos nossos clientes.",
-    mensagem: "De uma pequena casa de sushi a uma referência gastronômica, o Kinpai cresceu com você."
-  };
+  // Carrossel automático
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveTab((prev) => (prev + 1) % carouselImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [carouselImages.length]);
 
   return (
     <div className="min-h-screen bg-[#1a1a1a] text-[#F5F1E8]">
@@ -66,264 +34,240 @@ export default function History() {
             <ChevronLeft size={24} />
             Voltar
           </button>
-          <h1 className="text-2xl font-bold">Kinpai <span className="text-[#D4AF37]">Sushi</span></h1>
-          <div></div>
+          <h1 className="text-xl font-bold">Kinpai <span className="text-[#D4AF37]">Sushi</span></h1>
+          <div className="w-24"></div>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="pt-32 pb-20">
-        <div className="container max-w-5xl">
-          {/* Hero Section */}
-          <section className="mb-16">
-            <div className="bg-gradient-to-r from-[#2C1810] to-[#3d2415] border border-[#5C4033] rounded-xl p-12 text-center">
-              <h1 className="text-5xl md:text-6xl font-bold mb-4">
-                Conheça Nossa <span className="text-[#D4AF37]">História</span>
-              </h1>
-              <div className="w-20 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto mb-6"></div>
-              <p className="text-lg text-[#D4C5B9] font-light">
-                Tradição, paixão e excelência em cada prato
+      <main className="pt-20">
+        {/* ===== HERO SECTION COM CARROSSEL ===== */}
+        <section className="relative w-full h-[500px] md:h-[600px] bg-[#1a1a1a]">
+          <HeroCarousel images={carouselImages} />
+          
+          {/* Overlay com textos */}
+          <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center z-10">
+            <h1 className="text-4xl md:text-5xl font-bold text-center mb-4 text-[#F5F1E8]">
+              A <span className="text-[#D4AF37]">História</span> do Kinpai
+            </h1>
+            <p className="text-lg md:text-xl text-[#D4C5B9] text-center max-w-2xl font-light">
+              18 anos de tradição, autenticidade e excelência
+            </p>
+          </div>
+
+          {/* Indicadores do carrossel */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
+            {carouselImages.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setActiveTab(idx)}
+                className={`h-2 rounded-full transition ${
+                  idx === activeTab ? "bg-[#D4AF37] w-8" : "bg-[#D4C5B9]/50 w-2"
+                }`}
+              />
+            ))}
+          </div>
+        </section>
+
+        {/* ===== SEÇÃO HISTÓRIA ===== */}
+        <section className="py-16 md:py-24 bg-[#1a1a1a]">
+          <div className="container max-w-4xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <div>
+                <span className="inline-block bg-[#D4AF37] text-[#1a1a1a] px-3 py-1 rounded-full text-xs font-bold mb-4">
+                  18 ANOS DE TRADIÇÃO
+                </span>
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#F5F1E8]">
+                  Com 18 anos de dedicação
+                </h2>
+                <p className="text-[#D4C5B9] leading-relaxed mb-6">
+                  O Kinpai é um restaurante que celebra a autenticidade da culinária japonesa, combinando sabores clássicos com um toque contemporâneo. Cada prato é uma verdadeira viagem ao Japão, preparado com ingredientes frescos e técnicas que valorizam a essência da gastronomia Oriental.
+                </p>
+                <p className="text-[#D4C5B9] leading-relaxed">
+                  Desde sua fundação em Petrópolis, o Kinpai se consolidou como referência em sushi premium, conquistando clientes que buscam qualidade, autenticidade e uma experiência gastronômica memorável.
+                </p>
+              </div>
+              <div className="relative">
+                <img
+                  src="/images/hitoria/18 anos.png"
+                  alt="18 Anos"
+                  className="w-full h-auto rounded-lg border border-[#5C4033]"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ===== SEÇÃO AMBIENTE ===== */}
+        <section className="py-16 md:py-24 bg-[#2C1810]">
+          <div className="container max-w-4xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <div className="relative order-2 md:order-1">
+                <div className="relative w-full aspect-video bg-[#1a1a1a] rounded-lg border border-[#5C4033] overflow-hidden">
+                  <video
+                    src="/images/hitoria/ambientes.mp4"
+                    controls
+                    className="w-full h-full object-cover"
+                    poster="/images/hero-sushi-premium.jpg"
+                  />
+                </div>
+              </div>
+              <div className="order-1 md:order-2">
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#F5F1E8]">
+                  Sofisticação & <span className="text-[#D4AF37]">Elegância</span>
+                </h2>
+                <p className="text-[#D4C5B9] leading-relaxed mb-6">
+                  Nossos ambientes são um convite ao refinamento e à excelência culinária. A cada detalhe, buscamos criar uma atmosfera de luxo contemporâneo onde a tradição japonesa encontra o conforto moderno.
+                </p>
+                <div className="bg-[#3d2415] rounded-lg p-6 border-l-4 border-[#D4AF37]">
+                  <p className="text-[#D4AF37] italic font-light">
+                    "Venha vivenciar uma experiência única de sabores, elegância e momentos inesquecíveis."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ===== SEÇÃO CHEF ===== */}
+        <section className="py-16 md:py-24 bg-[#1a1a1a]">
+          <div className="container max-w-4xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#F5F1E8]">
+                  <span className="text-[#D4AF37]">Arte</span> & Expertise
+                </h2>
+                <p className="text-[#D4C5B9] leading-relaxed mb-6">
+                  Nosso chef traz técnicas refinadas e um profundo conhecimento da culinária japonesa. Com seleção rigorosa de ingredientes importados, cada prato é preparado com dedicação absoluta.
+                </p>
+                <h3 className="text-xl font-bold text-[#D4AF37] mb-3">
+                  Qualidade em Cada Detalhe
+                </h3>
+                <p className="text-[#D4C5B9] leading-relaxed">
+                  A paixão pelo ofício reflete em cada movimento, em cada corte, em cada combinação de sabores que chega até sua mesa. Uma verdadeira experiência gastronômica.
+                </p>
+              </div>
+              <div className="relative">
+                <img
+                  src="/images/hitoria/chef.png"
+                  alt="Chef"
+                  className="w-full h-auto rounded-lg border border-[#5C4033]"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ===== SEÇÃO EQUIPE ===== */}
+        <section className="py-16 md:py-24 bg-[#2C1810]">
+          <div className="container max-w-4xl">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#F5F1E8]">
+                O Time <span className="text-[#D4AF37]">Kinpai</span>
+              </h2>
+              <p className="text-[#D4C5B9] text-lg">
+                Profissionais qualificados dedicados à excelência
               </p>
             </div>
-          </section>
-
-          {/* Navigation Tabs */}
-          <section className="mb-12">
-            <div className="grid grid-cols-2 md:grid-cols-6 gap-2">
-              {sections.map((section) => (
-                <button
-                  key={section.id}
-                  onClick={() => setActiveSection(section.id)}
-                  className={`py-3 px-2 text-center rounded-lg transition font-semibold text-sm md:text-base ${
-                    activeSection === section.id
-                      ? "bg-[#D4AF37] text-[#1a1a1a]"
-                      : "bg-[#2C1810] text-[#D4AF37] hover:bg-[#3d2415] border border-[#5C4033]"
-                  }`}
-                >
-                  <div className="text-lg mb-1">{section.icon}</div>
-                  {section.label}
-                </button>
-              ))}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <div className="relative">
+                <img
+                  src="/images/hitoria/equipe.png"
+                  alt="Equipe"
+                  className="w-full h-auto rounded-lg border border-[#5C4033]"
+                />
+              </div>
+              <div>
+                <p className="text-[#D4C5B9] leading-relaxed mb-8">
+                  Esse é o time Kinpai, responsável pelo alto padrão que faz a diferença. São profissionais qualificados e dedicados que garantem a excelência do nosso restaurante.
+                </p>
+                <div className="bg-[#3d2415] rounded-lg p-8 border-l-4 border-[#D4AF37]">
+                  <p className="text-lg font-light text-[#D4AF37]">
+                    Agradecemos a cada um pelo trabalho impecável que sustenta nossa reputação e conquista de nossos clientes.
+                  </p>
+                </div>
+              </div>
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* Content Sections */}
-          <section className="space-y-8">
-            {/* HISTÓRIA */}
-            {activeSection === "historia" && (
-              <div className="animate-fadeIn">
-                <div className="bg-gradient-to-r from-[#2C1810] to-[#3d2415] border border-[#5C4033] rounded-xl p-12">
-                  <div className="mb-6">
-                    <span className="inline-block bg-[#D4AF37] text-[#1a1a1a] px-4 py-1 rounded-full text-sm font-bold">
-                      {historiContent.anos}
-                    </span>
-                  </div>
-                  <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#F5F1E8]">
-                    {historiContent.titulo}
-                  </h2>
-                  <div className="w-16 h-1 bg-gradient-to-r from-[#D4AF37] to-transparent mb-8"></div>
-                  <p className="text-lg text-[#D4C5B9] leading-relaxed mb-6">
-                    {historiContent.descricao}
+        {/* ===== SEÇÃO NEA ===== */}
+        <section className="py-16 md:py-24 bg-[#1a1a1a]">
+          <div className="container max-w-4xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold mb-3 text-[#F5F1E8]">
+                  Nea - A <span className="text-[#D4AF37]">Visionária</span>
+                </h2>
+                <p className="text-xl font-semibold text-[#D4AF37] mb-6">
+                  "Uma paraibana, bem petropolitana e quase japonesa!"
+                </p>
+                <p className="text-[#D4C5B9] leading-relaxed mb-6">
+                  Morando em Petrópolis há 30 anos e com mais de 25 anos de experiência em restaurante japonês, Nea traz ao Kinpai sua paixão pela culinária com muita criatividade, alegria e administração de uma equipe premium.
+                </p>
+                <div className="bg-[#2C1810] rounded-lg p-8 border border-[#5C4033]">
+                  <p className="text-[#D4AF37] italic font-light mb-4">
+                    "São quase 18 anos se dedicando ao Kinpai e à satisfação dos seus clientes."
                   </p>
-                  <div className="grid grid-cols-3 gap-4 mt-8 pt-8 border-t border-[#5C4033]">
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-[#D4AF37] mb-2">18+</div>
-                      <p className="text-sm text-[#D4C5B9]">Anos de Excelência</p>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-[#D4AF37] mb-2">100%</div>
-                      <p className="text-sm text-[#D4C5B9]">Ingredientes Frescos</p>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-[#D4AF37] mb-2">♾️</div>
-                      <p className="text-sm text-[#D4C5B9]">Tradição Contínua</p>
-                    </div>
-                  </div>
+                  <p className="text-[#D4C5B9] font-semibold">
+                    ✨ Conte uma história sua com a Nea!
+                  </p>
                 </div>
               </div>
-            )}
-
-            {/* AMBIENTE */}
-            {activeSection === "ambiente" && (
-              <div className="animate-fadeIn">
-                <div className="bg-gradient-to-r from-[#2C1810] to-[#3d2415] border border-[#5C4033] rounded-xl p-12">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="text-4xl">🏮</div>
-                    <h2 className="text-4xl md:text-5xl font-bold text-[#F5F1E8]">
-                      {ambienteContent.titulo}
-                    </h2>
-                  </div>
-                  <div className="w-16 h-1 bg-gradient-to-r from-[#D4AF37] to-transparent mb-8"></div>
-                  <p className="text-lg text-[#D4C5B9] leading-relaxed mb-6">
-                    {ambienteContent.descricao}
-                  </p>
-                  <div className="bg-[#1a1a1a] rounded-lg p-8 border border-[#5C4033]">
-                    <p className="text-xl text-[#D4AF37] italic font-light">
-                      "{ambienteContent.subDescricao}"
-                    </p>
-                  </div>
-                  {/* Ambiente Video/Image */}
-                  <div className="mt-8">
-                    <div className="relative w-full aspect-video bg-[#1a1a1a] rounded-lg border border-[#5C4033] overflow-hidden">
-                      <video
-                        src="/images/hitoria/ambientes.mp4"
-                        controls
-                        className="w-full h-full object-cover"
-                        poster="/images/hero-sushi-premium.jpg"
-                      />
-                    </div>
-                  </div>
-                </div>
+              <div className="relative">
+                <img
+                  src="/images/hitoria/nea.png"
+                  alt="Nea"
+                  className="w-full h-auto rounded-lg border border-[#5C4033]"
+                />
               </div>
-            )}
+            </div>
+          </div>
+        </section>
 
-            {/* CHEF */}
-            {activeSection === "chef" && (
-              <div className="animate-fadeIn">
-                <div className="bg-gradient-to-r from-[#2C1810] to-[#3d2415] border border-[#5C4033] rounded-xl p-12">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="text-4xl">👨‍🍳</div>
-                    <h2 className="text-4xl md:text-5xl font-bold text-[#F5F1E8]">
-                      {chefContent.titulo}
-                    </h2>
-                  </div>
-                  <div className="w-16 h-1 bg-gradient-to-r from-[#D4AF37] to-transparent mb-8"></div>
-                  <p className="text-lg text-[#D4C5B9] leading-relaxed mb-8">
-                    {chefContent.descricao}
-                  </p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                      <h3 className="text-2xl font-bold text-[#D4AF37] mb-4">
-                        {chefContent.subTitulo}
-                      </h3>
-                      <p className="text-[#D4C5B9] leading-relaxed">
-                        {chefContent.subDescricao}
-                      </p>
-                    </div>
-                    <div className="relative">
-                      <img
-                        src="/images/hitoria/chef.png"
-                        alt="Chef"
-                        className="w-full h-full object-cover rounded-lg border border-[#5C4033]"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
+        {/* ===== SEÇÃO 20 ANOS ===== */}
+        <section className="py-16 md:py-24 bg-[#2C1810]">
+          <div className="container max-w-4xl">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#F5F1E8]">
+                20 Anos de <span className="text-[#D4AF37]">Excelência</span>
+              </h2>
+              <p className="text-[#D4C5B9] text-lg">
+                Celebrando duas décadas de tradição e qualidade
+              </p>
+            </div>
+            <div className="mb-8">
+              <img
+                src="/images/hitoria/kinpai sushi 20 anos #######-02.jpg.jpeg"
+                alt="20 Anos Kinpai Sushi"
+                className="w-full h-auto rounded-lg border border-[#5C4033] shadow-2xl"
+              />
+            </div>
+            <div className="bg-[#1a1a1a] rounded-lg p-8 border-l-4 border-[#D4AF37] text-center">
+              <p className="text-lg md:text-xl font-light text-[#D4AF37] italic">
+                "De uma pequena casa de sushi a uma referência gastronômica, o Kinpai cresceu com você. Cada ano representa um compromisso renovado com a excelência culinária e a satisfação dos nossos clientes."
+              </p>
+            </div>
+          </div>
+        </section>
 
-            {/* EQUIPE */}
-            {activeSection === "equipe" && (
-              <div className="animate-fadeIn">
-                <div className="bg-gradient-to-r from-[#2C1810] to-[#3d2415] border border-[#5C4033] rounded-xl p-12">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="text-4xl">👥</div>
-                    <h2 className="text-4xl md:text-5xl font-bold text-[#F5F1E8]">
-                      {equipContent.titulo}
-                    </h2>
-                  </div>
-                  <div className="w-16 h-1 bg-gradient-to-r from-[#D4AF37] to-transparent mb-8"></div>
-                  <p className="text-lg text-[#D4C5B9] leading-relaxed mb-6">
-                    {equipContent.descricao}
-                  </p>
-                  <div className="bg-[#1a1a1a] rounded-lg p-8 border-l-4 border-[#D4AF37]">
-                    <p className="text-xl font-light text-[#D4AF37]">
-                      {equipContent.destaque}
-                    </p>
-                  </div>
-                  <div className="mt-8">
-                    <img
-                      src="/images/hitoria/equipe.png"
-                      alt="Equipe"
-                      className="w-full h-auto rounded-lg border border-[#5C4033]"
-                    />
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* NEA */}
-            {activeSection === "nea" && (
-              <div className="animate-fadeIn">
-                <div className="bg-gradient-to-r from-[#2C1810] to-[#3d2415] border border-[#5C4033] rounded-xl p-12">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="text-4xl">👩</div>
-                    <h2 className="text-4xl md:text-5xl font-bold text-[#F5F1E8]">
-                      {neaContent.titulo}
-                    </h2>
-                  </div>
-                  <div className="w-16 h-1 bg-gradient-to-r from-[#D4AF37] to-transparent mb-8"></div>
-                  <p className="text-2xl font-bold text-[#D4AF37] mb-6">
-                    {neaContent.subtitulo}
-                  </p>
-                  <p className="text-lg text-[#D4C5B9] leading-relaxed mb-8">
-                    {neaContent.descricao}
-                  </p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="bg-[#1a1a1a] rounded-lg p-8 border border-[#5C4033]">
-                      <p className="text-lg font-light text-[#D4AF37] italic mb-6">
-                        "{neaContent.destaque}"
-                      </p>
-                      <p className="text-lg font-semibold text-[#D4C5B9]">
-                        {neaContent.cta}
-                      </p>
-                    </div>
-                    <div className="relative">
-                      <img
-                        src="/images/hitoria/nea.png"
-                        alt="Nea"
-                        className="w-full h-full object-cover rounded-lg border border-[#5C4033]"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* 20 ANOS */}
-            {activeSection === "kinpai" && (
-              <div className="animate-fadeIn">
-                <div className="bg-gradient-to-r from-[#2C1810] to-[#3d2415] border border-[#5C4033] rounded-xl p-12">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="text-4xl">🎉</div>
-                    <h2 className="text-4xl md:text-5xl font-bold text-[#F5F1E8]">
-                      {kinpaiContent.titulo}
-                    </h2>
-                  </div>
-                  <div className="w-16 h-1 bg-gradient-to-r from-[#D4AF37] to-transparent mb-8"></div>
-                  <p className="text-lg text-[#D4C5B9] leading-relaxed mb-8">
-                    {kinpaiContent.descricao}
-                  </p>
-                  <div className="relative w-full">
-                    <img
-                      src="/images/hitoria/kinpai sushi 20 anos #######-02.jpg.jpeg"
-                      alt="20 Anos Kinpai Sushi"
-                      className="w-full h-auto rounded-lg border border-[#5C4033] shadow-2xl"
-                    />
-                  </div>
-                  <div className="mt-8 bg-[#1a1a1a] rounded-lg p-8 border-l-4 border-[#D4AF37]">
-                    <p className="text-xl font-light text-[#D4AF37] italic">
-                      {kinpaiContent.mensagem}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            )}
-          </section>
-
-          {/* CTA Final */}
-          <section className="mt-16 text-center">
-            <p className="text-xl text-[#D4C5B9] mb-8">
-              Faça parte de nossa história de tradição e excelência
+        {/* ===== CTA FINAL ===== */}
+        <section className="py-16 md:py-20 bg-[#1a1a1a]">
+          <div className="container max-w-2xl text-center">
+            <h2 className="text-2xl md:text-3xl font-bold mb-6 text-[#F5F1E8]">
+              Faça Parte da Nossa História
+            </h2>
+            <p className="text-[#D4C5B9] text-lg mb-8">
+              Experiencie a tradição, qualidade e paixão que definem o Kinpai há quase duas décadas
             </p>
             <button
               onClick={() => navigate("/")}
-              className="bg-[#D4AF37] hover:bg-[#E5C158] text-[#1a1a1a] font-bold uppercase tracking-widest py-4 px-10 rounded-lg transition transform hover:scale-105"
+              className="bg-[#D4AF37] hover:bg-[#E5C158] text-[#1a1a1a] font-bold uppercase tracking-widest py-4 px-10 rounded-lg transition transform hover:scale-105 inline-block"
             >
               Fazer um Pedido
             </button>
-          </section>
-        </div>
+          </div>
+        </section>
       </main>
 
       {/* ===== FOOTER ===== */}
@@ -361,7 +305,7 @@ export default function History() {
                   <Facebook size={20} />
                 </a>
                 <a
-                  href="https://www.tripadvisor.com.br/Restaurant_Review-g303504-d6007492-Reviews-Kinpai_SushiBar-Petropolis_State_of_Rio_de_Janeiro.html"
+                  href="https://www.tripadvisor.com.br/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[#D4AF37] hover:text-[#F5F1E8] transition"
@@ -374,9 +318,8 @@ export default function History() {
 
             {/* Informações */}
             <div>
-              <h4 className="font-bold mb-4 text-[#D4AF37]">Informações</h4>
+              <h4 className="font-bold mb-4 text-[#D4AF37]">Localização</h4>
               <div className="text-[#D4C5B9] text-sm space-y-2">
-                <p><strong>CNPJ:</strong> XX.XXX.XXX/0001-XX</p>
                 <p><strong>Endereço:</strong></p>
                 <p>R. Gonçalves Dias, 423</p>
                 <p>Valparaíso, Petrópolis - RJ</p>
@@ -430,23 +373,6 @@ export default function History() {
           </div>
         </div>
       </footer>
-
-      {/* Animações CSS */}
-      <style>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-fadeIn {
-          animation: fadeIn 0.5s ease-in-out forwards;
-        }
-      `}</style>
     </div>
   );
 }
