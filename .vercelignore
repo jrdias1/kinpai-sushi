@@ -1,0 +1,14 @@
+# Pastas desnecessárias
+bkp/
+node_modules/
+.venv/
+.manus-logs/
+
+# Arquivos temporários
+*.log
+*.tmp
+desktop.ini
+
+# Desenvolvimento
+.vscode/
+.idea/

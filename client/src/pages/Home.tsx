@@ -665,23 +665,25 @@ export default function Home() {
               <p className="text-[#D4C5B9] text-sm">
                 &copy; 2026 Kinpai Sushi. Todos os direitos reservados.
               </p>
-              <a
-                href="https://www.instagram.com/essencial_comunicacao/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:opacity-80 transition flex items-center gap-2"
-                title="Essencial Comunicação"
-              >
-                <img
-                  src="/images/logoessencial.jpg"
-                  alt="Essencial Comunicação"
-                  className="h-8 w-8 rounded-full object-cover"
-                />
-                <span className="sr-only">Essencial Comunicação</span>
-              </a>
             </div>
             <div className="text-center text-[#D4C5B9] text-xs">
-              <p>Desenvolvido por Essencial Comunicação</p>
+              <p>
+                Desenvolvido por{" "}
+                <a
+                  href="https://www.instagram.com/essencial_comunicacao/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:opacity-80 transition inline-flex items-center gap-1"
+                  title="Essencial Comunicação"
+                >
+                  Essencial Comunicação
+                  <img
+                    src="/images/logoessencial.jpg"
+                    alt="Essencial Comunicação"
+                    className="h-4 w-4 rounded-full object-cover"
+                  />
+                </a>
+              </p>
             </div>
           </div>
         </div>
