@@ -106,13 +106,28 @@ ALLOWED_ADMIN_EMAILS=sitekinpaisushibar@gmail.com,novoadmin@email.com
 
 ### Backend (TypeScript/Node.js)
 
+**Opção 1: Usar função environment-aware (Recomendado para produção)**
 ```typescript
-// Verificar se um email é admin
-const adminEmails = (process.env.ALLOWED_ADMIN_EMAILS || "")
-  .split(",")
-  .map(e => e.trim().toLowerCase());
+import { isAdminEmailEnv } from "@shared/admin-config";
 
-const isAdmin = adminEmails.includes(email.toLowerCase().trim());
+// Verifica permissão usando env var ou default
+const isAdmin = isAdminEmailEnv(email);
+```
+
+**Opção 2: Usar lista estática (Desenvolvimento)**
+```typescript
+import { isAdminEmail, ALLOWED_ADMIN_EMAILS } from "@shared/admin-config";
+
+// Verificar usando lista hardcoded
+const isAdmin = isAdminEmail(email);
+```
+
+**Opção 3: Obter lista de admins**
+```typescript
+import { getAdminEmails } from "@shared/admin-config";
+
+// Obter lista completa de emails admin
+const adminEmails = getAdminEmails(); // Retorna array de strings
 ```
 
 ### Frontend (React/TypeScript)

@@ -1,6 +1,7 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
+import { isAdminEmailEnv } from "../shared/admin-config.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -54,14 +55,7 @@ app.post("/api/auth/check-admin", (req, res) => {
       return res.status(400).json({ error: "Email is required" });
     }
 
-    // Get allowed admin emails from environment variable or use default
-    const allowedAdminEmails = (
-      process.env.ALLOWED_ADMIN_EMAILS || "sitekinpaisushibar@gmail.com"
-    )
-      .split(",")
-      .map((e) => e.trim().toLowerCase());
-
-    const isAdmin = allowedAdminEmails.includes(email.toLowerCase().trim());
+    const isAdmin = isAdminEmailEnv(email);
 
     res.json({
       isAdmin,
