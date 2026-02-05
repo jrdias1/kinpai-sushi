@@ -643,10 +643,28 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="border-t border-[#5C4033] pt-8 text-center text-[#D4C5B9] text-sm">
-            <p>
-              &copy; 2026 Kinpai Sushi. Todos os direitos reservados.
-            </p>
+          <div className="border-t border-[#5C4033] pt-8">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-8">
+              <p className="text-[#D4C5B9] text-sm">
+                &copy; 2026 Kinpai Sushi. Todos os direitos reservados.
+              </p>
+              <a
+                href="https://www.instagram.com/essencial_comunicacao/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition"
+                title="Essencial Comunicação"
+              >
+                <img
+                  src="/images/logoessencial.png"
+                  alt="Essencial Comunicação"
+                  className="h-12 w-auto object-contain"
+                />
+              </a>
+            </div>
+            <div className="text-center text-[#D4C5B9] text-xs">
+              <p>Desenvolvido por Essencial Comunicação</p>
+            </div>
           </div>
         </div>
       </footer>
