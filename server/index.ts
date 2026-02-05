@@ -45,6 +45,37 @@ app.get("/api/health", (req, res) => {
 // API Routes
 // ============================================================================
 
+// Admin email permission check
+app.post("/api/auth/check-admin", (req, res) => {
+  try {
+    const { email } = req.body;
+
+    if (!email) {
+      return res.status(400).json({ error: "Email is required" });
+    }
+
+    // Get allowed admin emails from environment variable or use default
+    const allowedAdminEmails = (
+      process.env.ALLOWED_ADMIN_EMAILS || "sitekinpaisushibar@gmail.com"
+    )
+      .split(",")
+      .map((e) => e.trim().toLowerCase());
+
+    const isAdmin = allowedAdminEmails.includes(email.toLowerCase().trim());
+
+    res.json({
+      isAdmin,
+      email,
+      message: isAdmin
+        ? "Email has admin permissions"
+        : "Email does not have admin permissions",
+    });
+  } catch (error) {
+    console.error("Admin check error:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 // Exemplo de rota de pedido
 app.post("/api/orders", (req, res) => {
   try {
