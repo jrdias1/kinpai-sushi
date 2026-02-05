@@ -47,6 +47,8 @@ app.get("/api/health", (req, res) => {
 // ============================================================================
 
 // Admin email permission check
+// SECURITY NOTE: This endpoint is for internal use only.
+// In production, add authentication and rate limiting to prevent email enumeration.
 app.post("/api/auth/check-admin", (req, res) => {
   try {
     const { email } = req.body;
@@ -57,9 +59,9 @@ app.post("/api/auth/check-admin", (req, res) => {
 
     const isAdmin = isAdminEmailEnv(email);
 
+    // Return only the boolean result to prevent email enumeration
     res.json({
       isAdmin,
-      email,
       message: isAdmin
         ? "Email has admin permissions"
         : "Email does not have admin permissions",

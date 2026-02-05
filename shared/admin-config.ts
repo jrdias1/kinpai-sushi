@@ -17,21 +17,32 @@ export function isAdminEmail(email: string): boolean {
   return ALLOWED_ADMIN_EMAILS.includes(email.toLowerCase().trim());
 }
 
+// Cache para emails de ambiente (otimização)
+let cachedEnvEmails: string[] | null = null;
+
 /**
  * Get admin emails from environment or use default list
  * Útil para ambientes de produção onde emails são configurados via variáveis de ambiente
+ * Results are cached for performance
  */
 export function getAdminEmails(): string[] {
+  // Return cached value if available
+  if (cachedEnvEmails !== null) {
+    return cachedEnvEmails;
+  }
+  
   const envEmails = process.env.ALLOWED_ADMIN_EMAILS;
   
   if (envEmails) {
-    return envEmails
+    cachedEnvEmails = envEmails
       .split(",")
       .map((e) => e.trim().toLowerCase())
       .filter((e) => e.length > 0);
+  } else {
+    cachedEnvEmails = ALLOWED_ADMIN_EMAILS;
   }
   
-  return ALLOWED_ADMIN_EMAILS;
+  return cachedEnvEmails;
 }
 
 /**

@@ -47,6 +47,8 @@ No Vercel Dashboard, adicione a variável de ambiente:
 
 ### Verificar Permissão de Admin
 
+> **⚠️ SECURITY WARNING:** This endpoint is for internal use only. In production environments, implement authentication and rate limiting to prevent email enumeration attacks.
+
 ```http
 POST /api/auth/check-admin
 Content-Type: application/json
@@ -60,7 +62,6 @@ Content-Type: application/json
 ```json
 {
   "isAdmin": true,
-  "email": "sitekinpaisushibar@gmail.com",
   "message": "Email has admin permissions"
 }
 ```
@@ -69,10 +70,11 @@ Content-Type: application/json
 ```json
 {
   "isAdmin": false,
-  "email": "outro@email.com",
   "message": "Email does not have admin permissions"
 }
 ```
+
+**Note:** The email is NOT echoed back in the response to prevent email enumeration.
 
 ## 📝 Adicionar Novos Admins
 
@@ -101,6 +103,9 @@ ALLOWED_ADMIN_EMAILS=sitekinpaisushibar@gmail.com,novoadmin@email.com
 - ✅ Espaços em branco são **removidos automaticamente**
 - ✅ Validação ocorre no **servidor** (não no cliente)
 - ✅ Lista pode ser gerenciada via **variáveis de ambiente**
+- ✅ Email não é retornado na resposta da API (previne enumeração)
+- ✅ Admin emails são **cacheados** para performance
+- ⚠️ **IMPORTANTE:** Em produção, adicione autenticação e rate limiting ao endpoint `/api/auth/check-admin`
 
 ## 📖 Uso no Código
 
