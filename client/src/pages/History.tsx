@@ -1,11 +1,17 @@
-import { ChevronLeft, ChevronRight, Instagram, Facebook, Star, MapPin, Phone, Clock } from "lucide-react";
+import { ChevronRight, MapPin, Phone, Clock, Instagram, Facebook, Star, ShoppingBag } from "lucide-react";
 import { useLocation } from "wouter";
 import { useState, useEffect } from "react";
 import HeroCarousel from "@/components/HeroCarousel";
+import { Button } from "@/components/ui/button";
+import CartButton from "@/components/CartButton";
+import CartDrawer from "@/components/CartDrawer";
+import { useCart } from "@/contexts/CartContext";
 
 export default function History() {
   const [, navigate] = useLocation();
   const [activeTab, setActiveTab] = useState(0);
+  const [showCart, setShowCart] = useState(false);
+  const { getTotalItems } = useCart();
 
   const carouselImages = [
     "/images/hero-sushi-premium.jpg",
@@ -24,20 +30,55 @@ export default function History() {
 
   return (
     <div className="min-h-screen bg-[#1a1a1a] text-[#F5F1E8]">
-      {/* Header */}
+      {/* ===== HEADER ===== */}
       <header className="fixed top-0 w-full z-50 bg-[#1a1a1a]/95 backdrop-blur border-b border-[#5C4033]">
         <div className="container flex items-center justify-between h-20">
-          <button
-            onClick={() => navigate("/")}
-            className="flex items-center gap-2 text-[#D4AF37] hover:text-[#F5F1E8] transition"
-          >
-            <ChevronLeft size={24} />
-            Voltar
-          </button>
-          <h1 className="text-xl font-bold">Kinpai <span className="text-[#D4AF37]">Sushi</span></h1>
-          <div className="w-24"></div>
+          <div className="flex items-center gap-2 -ml-6">
+            <img 
+              src="/images/logo-kinpai.jpg" 
+              alt="Kinpai Sushi" 
+              className="h-24 w-auto object-contain"
+            />
+          </div>
+          <nav className="hidden md:flex items-center gap-8">
+            <a href="/" className="hover:text-[#D4AF37] transition">
+              Home
+            </a>
+            <a href="/#chef" className="hover:text-[#D4AF37] transition">
+              Chef
+            </a>
+            <a href="/menu" className="hover:text-[#D4AF37] transition">
+              Cardápio
+            </a>
+            <a href="/#location" className="hover:text-[#D4AF37] transition">
+              Localização
+            </a>
+          </nav>
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setShowCart(true)}
+              className="relative text-[#D4AF37] hover:text-[#F5F1E8] transition p-2 rounded hover:bg-[#2C1810]"
+              title="Ver carrinho"
+            >
+              <ShoppingBag size={24} />
+              {getTotalItems() > 0 && (
+                <span className="absolute -top-1 -right-1 bg-[#C41E3A] text-[#F5F1E8] text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                  {getTotalItems()}
+                </span>
+              )}
+            </button>
+            <Button
+              onClick={() => navigate('/menu')}
+              className="bg-[#C41E3A] hover:bg-[#A01729] text-[#F5F1E8] uppercase text-sm font-bold tracking-widest"
+            >
+              Pedir no Site
+            </Button>
+          </div>
         </div>
       </header>
+
+      {/* CartDrawer */}
+      <CartDrawer isOpen={showCart} onClose={() => setShowCart(false)} />
 
       {/* Main Content */}
       <main className="pt-20">
@@ -51,7 +92,7 @@ export default function History() {
               A <span className="text-[#D4AF37]">História</span> do Kinpai
             </h1>
             <p className="text-lg md:text-xl text-[#D4C5B9] text-center max-w-2xl font-light">
-              18 anos de tradição, autenticidade e excelência
+              20 anos de tradição, autenticidade e excelência
             </p>
           </div>
 
@@ -69,16 +110,42 @@ export default function History() {
           </div>
         </section>
 
+        {/* ===== SEÇÃO 20 ANOS (INÍCIO) ===== */}
+        <section className="py-16 md:py-24 bg-[#2C1810]">
+          <div className="container max-w-4xl">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#F5F1E8]">
+                20 Anos de <span className="text-[#D4AF37]">Excelência</span>
+              </h2>
+              <p className="text-[#D4C5B9] text-lg">
+                Celebrando duas décadas de tradição e qualidade
+              </p>
+            </div>
+            <div className="mb-8">
+              <img
+                src="/images/hitoria/kinpai sushi 20 anos #######-02.jpg.jpeg"
+                alt="20 Anos Kinpai Sushi"
+                className="w-full h-auto rounded-lg border border-[#5C4033] shadow-2xl"
+              />
+            </div>
+            <div className="bg-[#1a1a1a] rounded-lg p-8 border-l-4 border-[#D4AF37] text-center">
+              <p className="text-lg md:text-xl font-light text-[#D4AF37] italic">
+                "De uma pequena casa de sushi a uma referência gastronômica, o Kinpai cresceu com você. Cada ano representa um compromisso renovado com a excelência culinária e a satisfação dos nossos clientes."
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* ===== SEÇÃO HISTÓRIA ===== */}
         <section className="py-16 md:py-24 bg-[#1a1a1a]">
           <div className="container max-w-4xl">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div>
                 <span className="inline-block bg-[#D4AF37] text-[#1a1a1a] px-3 py-1 rounded-full text-xs font-bold mb-4">
-                  18 ANOS DE TRADIÇÃO
+                  NOSSA JORNADA
                 </span>
                 <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#F5F1E8]">
-                  Com 18 anos de dedicação
+                  A Trajetória do Kinpai
                 </h2>
                 <p className="text-[#D4C5B9] leading-relaxed mb-6">
                   O Kinpai é um restaurante que celebra a autenticidade da culinária japonesa, combinando sabores clássicos com um toque contemporâneo. Cada prato é uma verdadeira viagem ao Japão, preparado com ingredientes frescos e técnicas que valorizam a essência da gastronomia Oriental.
@@ -90,7 +157,7 @@ export default function History() {
               <div className="relative">
                 <img
                   src="/images/hitoria/18 anos.png"
-                  alt="18 Anos"
+                  alt="Kinpai Sushi"
                   className="w-full h-auto rounded-lg border border-[#5C4033]"
                 />
               </div>
@@ -207,7 +274,7 @@ export default function History() {
                 </p>
                 <div className="bg-[#2C1810] rounded-lg p-8 border border-[#5C4033]">
                   <p className="text-[#D4AF37] italic font-light mb-4">
-                    "São quase 18 anos se dedicando ao Kinpai e à satisfação dos seus clientes."
+                    "São quase 20 anos se dedicando ao Kinpai e à satisfação dos seus clientes."
                   </p>
                   <p className="text-[#D4C5B9] font-semibold">
                     ✨ Conte uma história sua com a Nea!
@@ -225,32 +292,6 @@ export default function History() {
           </div>
         </section>
 
-        {/* ===== SEÇÃO 20 ANOS ===== */}
-        <section className="py-16 md:py-24 bg-[#2C1810]">
-          <div className="container max-w-4xl">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#F5F1E8]">
-                20 Anos de <span className="text-[#D4AF37]">Excelência</span>
-              </h2>
-              <p className="text-[#D4C5B9] text-lg">
-                Celebrando duas décadas de tradição e qualidade
-              </p>
-            </div>
-            <div className="mb-8">
-              <img
-                src="/images/hitoria/kinpai sushi 20 anos #######-02.jpg.jpeg"
-                alt="20 Anos Kinpai Sushi"
-                className="w-full h-auto rounded-lg border border-[#5C4033] shadow-2xl"
-              />
-            </div>
-            <div className="bg-[#1a1a1a] rounded-lg p-8 border-l-4 border-[#D4AF37] text-center">
-              <p className="text-lg md:text-xl font-light text-[#D4AF37] italic">
-                "De uma pequena casa de sushi a uma referência gastronômica, o Kinpai cresceu com você. Cada ano representa um compromisso renovado com a excelência culinária e a satisfação dos nossos clientes."
-              </p>
-            </div>
-          </div>
-        </section>
-
         {/* ===== CTA FINAL ===== */}
         <section className="py-16 md:py-20 bg-[#1a1a1a]">
           <div className="container max-w-2xl text-center">
@@ -258,7 +299,7 @@ export default function History() {
               Faça Parte da Nossa História
             </h2>
             <p className="text-[#D4C5B9] text-lg mb-8">
-              Experiencie a tradição, qualidade e paixão que definem o Kinpai há quase duas décadas
+              Experiencie a tradição, qualidade e paixão que definem o Kinpai há 20 anos
             </p>
             <button
               onClick={() => navigate("/")}
