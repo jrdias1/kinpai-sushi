@@ -172,8 +172,8 @@ export default function Menu() {
   const handleOrderOption = (option: string) => {
     let url = "";
     const message = selectedItem
-      ? `Olá! Vi o ${selectedItem.name} no cardápio e gostaria de pedir!`
-      : "Olá! Gostaria de fazer um pedido.";
+      ? `Olá! Vi o ${selectedItem.name} no cardápio e gostaria de pedir! 🍣`
+      : "Olá! Gostaria de fazer um pedido 🍣";
 
     if (option === "whatsapp") {
       url = `https://wa.me/5524988622?text=${encodeURIComponent(message)}`;
@@ -375,7 +375,7 @@ export default function Menu() {
 
       {/* WHATSAPP FLOATING BUTTON */}
       <a
-        href="https://wa.me/5524988622"
+        href={`https://wa.me/5524988622?text=${encodeURIComponent("Olá! Gostaria de fazer um pedido 🍣")}`}
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-20 md:bottom-6 right-6 z-40 bg-[#25D366] text-white p-3 md:p-4 rounded-full shadow-lg hover:scale-110 transition-transform flex items-center justify-center"

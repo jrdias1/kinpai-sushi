@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ChevronRight, MapPin, Phone, Clock, Instagram, Facebook, Star, Plus, ShoppingBag } from "lucide-react";
+import { ChevronRight, MapPin, Phone, Clock, Instagram, Facebook, Star, Plus, ShoppingBag, MessageCircle } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useLocation } from "wouter";
 import HeroCarousel from "@/components/HeroCarousel";
@@ -162,7 +162,7 @@ export default function Home() {
 
   const handleOrderOption = (option: string) => {
     let url = '';
-    const message = "Olá! Gostaria de fazer um pedido.";
+    const message = "Olá! Gostaria de fazer um pedido 🍣";
     
     if (option === 'whatsapp') {
       url = `https://wa.me/5524988622?text=${encodeURIComponent(message)}`;
@@ -235,10 +235,10 @@ export default function Home() {
         {/* Content */}
         <div className="relative z-10 container max-w-4xl mx-auto px-3 sm:px-4 text-center pt-16 md:pt-32">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 sm:mb-6 md:mb-8 text-[#F5F1E8] leading-tight drop-shadow-lg">
-            Kinpai <span className="gold-accent">Sushi</span>
+            Kinpai Sushi Bar <span className="gold-accent">– Sushi artesanal</span>
           </h1>
           <p className="text-sm sm:text-base md:text-lg text-[#D4C5B9] mb-6 sm:mb-8 md:mb-12 font-light drop-shadow">
-            Experiência gastronômica de luxo em Petrópolis
+            Sushi artesanal preparado com ingredientes frescos. Seu sushi bar de comida japonesa em Petrópolis com delivery de sushi.
           </p>
 
           {/* CTA Button */}
@@ -399,6 +399,7 @@ export default function Home() {
                     src={dish.image}
                     alt={dish.name}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 </div>
@@ -445,6 +446,7 @@ export default function Home() {
                     src={chefImages[activeTab]}
                     alt="Chef Nunes"
                     className="w-full h-auto object-cover transition-opacity duration-500 opacity-100"
+                    loading="lazy"
                   />
                   {/* Overlay degradado */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a]/50 to-transparent"></div>
@@ -472,19 +474,89 @@ export default function Home() {
                 O Chef & a <span className="gold-accent">Tradição</span>
               </h2>
               <p className="text-[#D4C5B9] text-sm sm:text-base md:text-lg mb-4 sm:mb-5 md:mb-6 leading-relaxed">
-                Com mais de 20 anos de experiência, o Chef Nunes traz a
-                autenticidade da culinária japonesa para Petrópolis. Cada prato
-                é preparado com rigor técnico e seleção minuciosa dos melhores
-                peixes frescos importados.
+                Desde 2006, o Kinpai Sushi Bar é referência em culinária japonesa na Região Serrana do Rio de Janeiro. Reconhecido pela crítica especializada e, principalmente, por seus clientes, o restaurante se consolidou como um dos grandes nomes da gastronomia japonesa da região.
+              </p>
+              <p className="text-[#D4C5B9] text-sm sm:text-base md:text-lg mb-4 sm:mb-5 md:mb-6 leading-relaxed">
+                À frente da cozinha está o Sushiman Chef Nunes, com mais de 20 anos de experiência, que diariamente prepara o melhor da culinária japonesa com rigor técnico, sensibilidade e profundo respeito à tradição. Ao lado de sua equipe, o chef une a essência da cozinha tradicional japonesa à inovação, criando pratos que se destacam pela qualidade, sabor e apresentação impecável.
+              </p>
+              <p className="text-[#D4C5B9] text-sm sm:text-base md:text-lg mb-4 sm:mb-5 md:mb-6 leading-relaxed">
+                Cada receita nasce da seleção minuciosa de peixes frescos e ingredientes premium, resultando em uma experiência gastronômica única. No Kinpai, cada nigiri é tratado como uma obra de arte, onde técnica, estética e sabor caminham juntos.
               </p>
               <p className="text-[#D4C5B9] text-sm sm:text-base md:text-lg mb-6 sm:mb-8 md:mb-8 leading-relaxed">
-                Nossa filosofia é simples: qualidade premium, técnica impecável
-                e respeito à tradição japonesa. Cada nigiri é uma obra de arte.
+                Localizado em uma área nobre, hoje reconhecida como o polo gastronômico da cidade, o Kinpai Sushi Bar oferece não apenas pratos excepcionais, mas também um alto padrão de atendimento, transformando cada visita em um momento especial — e cada cliente, em um novo amigo.
               </p>
               <a href="/history">
                 <Button className="bg-[#D4AF37] hover:bg-[#E5C158] text-[#2C1810] font-bold uppercase tracking-widest">
                   Conheça Nossa História
                 </Button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== PROVA SOCIAL - DEPOIMENTOS ===== */}
+      <section className="py-12 md:py-16 lg:py-20 bg-[#1a1a1a] border-t border-[#5C4033]">
+        <div className="container">
+          <div className="text-center mb-8 md:mb-12 lg:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 md:mb-4">
+              ⭐ O que nossos <span className="gold-accent">clientes</span> dizem
+            </h2>
+            <div className="h-1 w-20 sm:w-24 bg-[#D4AF37] mx-auto"></div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {/* Depoimento 1 */}
+            <div className="bg-[#2C1810] p-6 md:p-8 rounded-lg border border-[#5C4033] hover:border-[#D4AF37] transition">
+              <div className="text-[#D4AF37] text-lg mb-3">⭐⭐⭐⭐⭐</div>
+              <p className="text-[#F5F1E8] text-sm sm:text-base font-semibold mb-4 italic">
+                "MELHOR DO MUNDO ❤️"
+              </p>
+              <p className="text-[#D4C5B9] text-xs sm:text-sm mb-2">— @rhaianevieira</p>
+              <p className="text-[#5C4033] text-xs mb-4">Comentário público no Instagram</p>
+              <a
+                href="https://www.instagram.com/kinpaisushi/reel/DTxwVKBijlR/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#D4AF37] hover:text-[#E5C158] transition text-xs sm:text-sm font-semibold"
+              >
+                Ver mais comentários →
+              </a>
+            </div>
+
+            {/* Depoimento 2 */}
+            <div className="bg-[#2C1810] p-6 md:p-8 rounded-lg border border-[#5C4033] hover:border-[#D4AF37] transition">
+              <div className="text-[#D4AF37] text-lg mb-3">⭐⭐⭐⭐⭐</div>
+              <p className="text-[#F5F1E8] text-sm sm:text-base font-semibold mb-4 italic">
+                "20 anos sendo o melhor! ❤️❤️"
+              </p>
+              <p className="text-[#D4C5B9] text-xs sm:text-sm mb-2">— @a_mandiiinha</p>
+              <p className="text-[#5C4033] text-xs mb-4">Comentário público no Instagram</p>
+              <a
+                href="https://www.instagram.com/kinpaisushi/reel/DTxwVKBijlR/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#D4AF37] hover:text-[#E5C158] transition text-xs sm:text-sm font-semibold"
+              >
+                Ver mais comentários →
+              </a>
+            </div>
+
+            {/* Depoimento 3 */}
+            <div className="bg-[#2C1810] p-6 md:p-8 rounded-lg border border-[#5C4033] hover:border-[#D4AF37] transition">
+              <div className="text-[#D4AF37] text-lg mb-3">⭐⭐⭐⭐⭐</div>
+              <p className="text-[#F5F1E8] text-sm sm:text-base font-semibold mb-4 italic">
+                "Com certeza o melhor 👏👏"
+              </p>
+              <p className="text-[#D4C5B9] text-xs sm:text-sm mb-2">— @portellaoctavio</p>
+              <p className="text-[#5C4033] text-xs mb-4">Comentário público no Instagram</p>
+              <a
+                href="https://www.instagram.com/kinpaisushi/reel/DTxwVKBijlR/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#D4AF37] hover:text-[#E5C158] transition text-xs sm:text-sm font-semibold"
+              >
+                Ver mais comentários →
               </a>
             </div>
           </div>
@@ -582,6 +654,17 @@ export default function Home() {
       {/* CART DRAWER */}
       <CartDrawer isOpen={showCart} onClose={() => setShowCart(false)} />
 
+      {/* WHATSAPP FLOATING BUTTON */}
+      <a
+        href={`https://wa.me/5524988622?text=${encodeURIComponent("Olá! Gostaria de fazer um pedido 🍣")}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-20 md:bottom-6 right-6 z-40 bg-[#25D366] text-white p-3 md:p-4 rounded-full shadow-lg hover:scale-110 transition-transform flex items-center justify-center"
+        title="Fale conosco no WhatsApp"
+      >
+        <MessageCircle size={28} className="md:w-8 md:h-8" />
+      </a>
+
       {/* ===== FOOTER ===== */}
       <footer className="bg-[#0f0f0f] border-t border-[#5C4033] py-12">
         <div className="container">
@@ -632,7 +715,7 @@ export default function Home() {
             <div>
               <h4 className="font-bold mb-4 gold-accent">Informações</h4>
               <div className="text-[#D4C5B9] text-sm space-y-2">
-                <p><strong>CNPJ:</strong> XX.XXX.XXX/0001-XX</p>
+                <p><strong>CNPJ:</strong> 08.273.490/0001-01</p>
                 <p><strong>Endereço:</strong></p>
                 <p>R. Gonçalves Dias, 423</p>
                 <p>Valparaíso, Petrópolis - RJ</p>

@@ -126,6 +126,7 @@ export default function History() {
                 src="/images/hitoria/kinpai sushi 20 anos #######-02.jpg.jpeg"
                 alt="20 Anos Kinpai Sushi"
                 className="w-full h-auto rounded-lg border border-[#5C4033] shadow-2xl"
+                loading="lazy"
               />
             </div>
             <div className="bg-[#1a1a1a] rounded-lg p-4 sm:p-6 md:p-8 border-l-4 border-[#D4AF37] text-center">
@@ -159,6 +160,7 @@ export default function History() {
                   src="/images/hitoria/18 anos.png"
                   alt="Kinpai Sushi"
                   className="w-full h-auto rounded-lg border border-[#5C4033]"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -219,6 +221,7 @@ export default function History() {
                   src="/images/hitoria/chef.png"
                   alt="Chef"
                   className="w-full h-auto rounded-lg border border-[#5C4033]"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -242,6 +245,7 @@ export default function History() {
                   src="/images/hitoria/equipe.png"
                   alt="Equipe"
                   className="w-full h-auto rounded-lg border border-[#5C4033]"
+                  loading="lazy"
                 />
               </div>
               <div>
@@ -286,6 +290,7 @@ export default function History() {
                   src="/images/hitoria/nea.png"
                   alt="Nea"
                   className="w-full h-auto rounded-lg border border-[#5C4033]"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -404,6 +409,7 @@ export default function History() {
                   src="/images/logoessencial.jpg"
                   alt="Essencial Comunicação"
                   className="h-8 w-8 rounded-full object-cover"
+                  loading="lazy"
                 />
                 <span className="sr-only">Essencial Comunicação</span>
               </a>
