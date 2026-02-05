@@ -83,27 +83,27 @@ export default function History() {
       {/* Main Content */}
       <main className="pt-20">
         {/* ===== HERO SECTION COM CARROSSEL ===== */}
-        <section className="relative w-full h-[500px] md:h-[600px] bg-[#1a1a1a]">
+        <section className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] bg-[#1a1a1a]">
           <HeroCarousel images={carouselImages} />
           
           {/* Overlay com textos */}
-          <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center z-10">
-            <h1 className="text-4xl md:text-5xl font-bold text-center mb-4 text-[#F5F1E8]">
+          <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center z-10 px-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-2 sm:mb-4 text-[#F5F1E8]">
               A <span className="text-[#D4AF37]">História</span> do Kinpai
             </h1>
-            <p className="text-lg md:text-xl text-[#D4C5B9] text-center max-w-2xl font-light">
+            <p className="text-sm sm:text-base md:text-lg md:text-xl text-[#D4C5B9] text-center max-w-2xl font-light">
               20 anos de tradição, autenticidade e excelência
             </p>
           </div>
 
           {/* Indicadores do carrossel */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
+          <div className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 flex gap-1.5 sm:gap-2 z-20">
             {carouselImages.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setActiveTab(idx)}
-                className={`h-2 rounded-full transition ${
-                  idx === activeTab ? "bg-[#D4AF37] w-8" : "bg-[#D4C5B9]/50 w-2"
+                className={`h-1.5 sm:h-2 rounded-full transition ${
+                  idx === activeTab ? "bg-[#D4AF37] w-6 sm:w-8" : "bg-[#D4C5B9]/50 w-1.5 sm:w-2"
                 }`}
               />
             ))}
@@ -111,25 +111,25 @@ export default function History() {
         </section>
 
         {/* ===== SEÇÃO 20 ANOS (INÍCIO) ===== */}
-        <section className="py-16 md:py-24 bg-[#2C1810]">
+        <section className="py-12 md:py-16 lg:py-24 bg-[#2C1810]">
           <div className="container max-w-4xl">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#F5F1E8]">
+            <div className="text-center mb-8 md:mb-12">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-4 text-[#F5F1E8]">
                 20 Anos de <span className="text-[#D4AF37]">Excelência</span>
               </h2>
-              <p className="text-[#D4C5B9] text-lg">
+              <p className="text-[#D4C5B9] text-xs sm:text-sm md:text-lg">
                 Celebrando duas décadas de tradição e qualidade
               </p>
             </div>
-            <div className="mb-8">
+            <div className="mb-6 md:mb-8">
               <img
                 src="/images/hitoria/kinpai sushi 20 anos #######-02.jpg.jpeg"
                 alt="20 Anos Kinpai Sushi"
                 className="w-full h-auto rounded-lg border border-[#5C4033] shadow-2xl"
               />
             </div>
-            <div className="bg-[#1a1a1a] rounded-lg p-8 border-l-4 border-[#D4AF37] text-center">
-              <p className="text-lg md:text-xl font-light text-[#D4AF37] italic">
+            <div className="bg-[#1a1a1a] rounded-lg p-4 sm:p-6 md:p-8 border-l-4 border-[#D4AF37] text-center">
+              <p className="text-sm sm:text-base md:text-lg md:text-xl font-light text-[#D4AF37] italic">
                 "De uma pequena casa de sushi a uma referência gastronômica, o Kinpai cresceu com você. Cada ano representa um compromisso renovado com a excelência culinária e a satisfação dos nossos clientes."
               </p>
             </div>
@@ -137,17 +137,17 @@ export default function History() {
         </section>
 
         {/* ===== SEÇÃO HISTÓRIA ===== */}
-        <section className="py-16 md:py-24 bg-[#1a1a1a]">
+        <section className="py-12 md:py-16 lg:py-24 bg-[#1a1a1a]">
           <div className="container max-w-4xl">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-12 items-center">
               <div>
-                <span className="inline-block bg-[#D4AF37] text-[#1a1a1a] px-3 py-1 rounded-full text-xs font-bold mb-4">
+                <span className="inline-block bg-[#D4AF37] text-[#1a1a1a] px-3 py-1 rounded-full text-xs font-bold mb-3 md:mb-4">
                   NOSSA JORNADA
                 </span>
-                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#F5F1E8]">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-[#F5F1E8]">
                   A Trajetória do Kinpai
                 </h2>
-                <p className="text-[#D4C5B9] leading-relaxed mb-6">
+                <p className="text-[#D4C5B9] text-xs sm:text-sm md:text-base leading-relaxed mb-4 md:mb-6">
                   O Kinpai é um restaurante que celebra a autenticidade da culinária japonesa, combinando sabores clássicos com um toque contemporâneo. Cada prato é uma verdadeira viagem ao Japão, preparado com ingredientes frescos e técnicas que valorizam a essência da gastronomia Oriental.
                 </p>
                 <p className="text-[#D4C5B9] leading-relaxed">

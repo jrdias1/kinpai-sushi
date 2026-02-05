@@ -226,25 +226,25 @@ export default function Home() {
       </header>
 
       {/* ===== HERO SECTION ===== */}
-      <section className="relative w-full h-screen flex items-center justify-center overflow-hidden pt-20">
+      <section className="relative w-full h-screen flex items-center justify-center overflow-hidden pt-12 md:pt-20">
         {/* Carousel Background */}
         <div className="absolute inset-0 top-0">
           <HeroCarousel images={carouselImages} autoPlayInterval={3000} />
         </div>
 
         {/* Content */}
-        <div className="relative z-10 container max-w-4xl mx-auto px-4 text-center pt-32">
-          <h1 className="text-5xl md:text-6xl font-bold mb-8 text-[#F5F1E8] leading-tight drop-shadow-lg">
+        <div className="relative z-10 container max-w-4xl mx-auto px-3 sm:px-4 text-center pt-16 md:pt-32">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 sm:mb-6 md:mb-8 text-[#F5F1E8] leading-tight drop-shadow-lg">
             Kinpai <span className="gold-accent">Sushi</span>
           </h1>
-          <p className="text-base md:text-lg text-[#D4C5B9] mb-12 font-light drop-shadow">
+          <p className="text-sm sm:text-base md:text-lg text-[#D4C5B9] mb-6 sm:mb-8 md:mb-12 font-light drop-shadow">
             Experiência gastronômica de luxo em Petrópolis
           </p>
 
           {/* CTA Button */}
           <button
             onClick={handleMainCTA}
-            className="cta-button mb-12 animate-pulse hover:animate-none"
+            className="cta-button mb-6 sm:mb-8 md:mb-12 animate-pulse hover:animate-none"
           >
             Fazer Pedido Agora
           </button>
@@ -285,7 +285,7 @@ export default function Home() {
           )}
 
           {/* Diferenciais */}
-          <div className="flex flex-col md:flex-row justify-center gap-8 text-sm">
+          <div className="flex flex-col md:flex-row justify-center gap-3 sm:gap-4 md:gap-8 text-xs sm:text-sm md:text-base">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-[#D4AF37] rounded-full"></div>
               <span>Entrega Rápida</span>
@@ -308,9 +308,9 @@ export default function Home() {
       </section>
 
       {/* ===== 20 ANOS DE HISTÓRIA ===== */}
-      <section id="history" className="py-16 md:py-24 bg-[#2C1810] border-t border-[#5C4033]">
+      <section id="history" className="py-12 md:py-16 lg:py-24 bg-[#2C1810] border-t border-[#5C4033]">
         <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-12 items-center">
             {/* Video */}
             <div className="relative">
               <div className="luxury-border p-2">
@@ -326,40 +326,40 @@ export default function Home() {
 
             {/* Content */}
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 md:mb-6">
                 20 Anos de <span className="gold-accent">História</span>
               </h2>
-              <p className="text-[#D4C5B9] text-base md:text-lg mb-4 md:mb-6 leading-relaxed">
+              <p className="text-[#D4C5B9] text-sm sm:text-base md:text-lg mb-3 sm:mb-4 md:mb-6 leading-relaxed">
                 Nossa história continua. Desde o início, o Kinpai se dedica a trazer a autenticidade e qualidade da culinária japonesa para Petrópolis e Valparaíso.
               </p>
-              <p className="text-[#D4C5B9] text-base md:text-lg mb-6 md:mb-8 leading-relaxed">
+              <p className="text-[#D4C5B9] text-sm sm:text-base md:text-lg mb-4 sm:mb-6 md:mb-8 leading-relaxed">
                 Ao longo de duas décadas, consolidamos nossa reputação através de experiências memoráveis e um compromisso inabalável com a excelência.
               </p>
               
               {/* Services Grid */}
-              <div className="grid grid-cols-2 gap-3 md:gap-4 mb-6 md:mb-8">
-                <div className="bg-[#1a1a1a] p-3 md:p-4 rounded border border-[#5C4033] hover:border-[#D4AF37] transition">
-                  <h3 className="text-[#D4AF37] font-bold text-sm md:text-base mb-1 md:mb-2">Rodízio</h3>
+              <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6 md:mb-8">
+                <div className="bg-[#1a1a1a] p-2 sm:p-3 md:p-4 rounded border border-[#5C4033] hover:border-[#D4AF37] transition">
+                  <h3 className="text-[#D4AF37] font-bold text-xs sm:text-sm md:text-base mb-1 md:mb-2">Rodízio</h3>
                   <p className="text-[#D4C5B9] text-xs md:text-sm">Experiência completa</p>
                 </div>
-                <div className="bg-[#1a1a1a] p-3 md:p-4 rounded border border-[#5C4033] hover:border-[#D4AF37] transition">
-                  <h3 className="text-[#D4AF37] font-bold text-sm md:text-base mb-1 md:mb-2">Eventos</h3>
+                <div className="bg-[#1a1a1a] p-2 sm:p-3 md:p-4 rounded border border-[#5C4033] hover:border-[#D4AF37] transition">
+                  <h3 className="text-[#D4AF37] font-bold text-xs sm:text-sm md:text-base mb-1 md:mb-2">Eventos</h3>
                   <p className="text-[#D4C5B9] text-xs md:text-sm">Celebrações especiais</p>
                 </div>
-                <div className="bg-[#1a1a1a] p-3 md:p-4 rounded border border-[#5C4033] hover:border-[#D4AF37] transition">
-                  <h3 className="text-[#D4AF37] font-bold text-sm md:text-base mb-1 md:mb-2">Delivery</h3>
+                <div className="bg-[#1a1a1a] p-2 sm:p-3 md:p-4 rounded border border-[#5C4033] hover:border-[#D4AF37] transition">
+                  <h3 className="text-[#D4AF37] font-bold text-xs sm:text-sm md:text-base mb-1 md:mb-2">Delivery</h3>
                   <p className="text-[#D4C5B9] text-xs md:text-sm">Entrega rápida</p>
                 </div>
-                <div className="bg-[#1a1a1a] p-3 md:p-4 rounded border border-[#5C4033] hover:border-[#D4AF37] transition">
-                  <h3 className="text-[#D4AF37] font-bold text-sm md:text-base mb-1 md:mb-2">Almoço Executivo</h3>
+                <div className="bg-[#1a1a1a] p-2 sm:p-3 md:p-4 rounded border border-[#5C4033] hover:border-[#D4AF37] transition">
+                  <h3 className="text-[#D4AF37] font-bold text-xs sm:text-sm md:text-base mb-1 md:mb-2">Almoço Executivo</h3>
                   <p className="text-[#D4C5B9] text-xs md:text-sm">Menu especial</p>
                 </div>
-                <div className="bg-[#1a1a1a] p-3 md:p-4 rounded border border-[#5C4033] hover:border-[#D4AF37] transition">
-                  <h3 className="text-[#D4AF37] font-bold text-sm md:text-base mb-1 md:mb-2">À La Carte</h3>
+                <div className="bg-[#1a1a1a] p-2 sm:p-3 md:p-4 rounded border border-[#5C4033] hover:border-[#D4AF37] transition">
+                  <h3 className="text-[#D4AF37] font-bold text-xs sm:text-sm md:text-base mb-1 md:mb-2">À La Carte</h3>
                   <p className="text-[#D4C5B9] text-xs md:text-sm">Seleção premium</p>
                 </div>
-                <div className="bg-[#1a1a1a] p-3 md:p-4 rounded border border-[#5C4033] hover:border-[#D4AF37] transition">
-                  <h3 className="text-[#D4AF37] font-bold text-sm md:text-base mb-1 md:mb-2">Dose Dupla</h3>
+                <div className="bg-[#1a1a1a] p-2 sm:p-3 md:p-4 rounded border border-[#5C4033] hover:border-[#D4AF37] transition">
+                  <h3 className="text-[#D4AF37] font-bold text-xs sm:text-sm md:text-base mb-1 md:mb-2">Dose Dupla</h3>
                   <p className="text-[#D4C5B9] text-xs md:text-sm">Promoção especial</p>
                 </div>
               </div>
@@ -367,7 +367,7 @@ export default function Home() {
               {/* CTA Button */}
               <button
                 onClick={() => navigate('/history')}
-                className="w-full md:w-auto bg-[#D4AF37] hover:bg-[#E5C158] text-[#1a1a1a] font-bold uppercase tracking-widest py-3 px-6 rounded transition transform hover:scale-105 text-sm md:text-base"
+                className="w-full md:w-auto bg-[#D4AF37] hover:bg-[#E5C158] text-[#1a1a1a] font-bold uppercase tracking-widest py-2 sm:py-2.5 md:py-3 px-4 sm:px-5 md:px-6 rounded transition transform hover:scale-105 text-xs sm:text-sm md:text-base"
               >
                 Conheça Nossa História
               </button>
@@ -377,24 +377,24 @@ export default function Home() {
       </section>
 
       {/* ===== FAVORITOS DA CASA ===== */}
-      <section id="menu" className="py-20 bg-[#1a1a1a] border-t border-[#5C4033]">
+      <section id="menu" className="py-12 md:py-16 lg:py-20 bg-[#1a1a1a] border-t border-[#5C4033]">
         <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <div className="text-center mb-8 md:mb-12 lg:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 md:mb-4">
               Favoritos da <span className="gold-accent">Casa</span>
             </h2>
-            <div className="h-1 w-24 bg-[#D4AF37] mx-auto"></div>
-            <p className="text-[#D4C5B9] text-sm mt-4">Atualizamos nossos favoritos a cada 5 segundos</p>
+            <div className="h-1 w-20 sm:w-24 bg-[#D4AF37] mx-auto"></div>
+            <p className="text-[#D4C5B9] text-xs sm:text-sm mt-3 md:mt-4">Atualizamos nossos favoritos a cada 5 segundos</p>
           </div>
 
           {/* Dishes Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
             {dishes.length > 0 ? dishes.map((dish, idx) => (
             <Card
               key={idx}
               className="bg-[#2C1810] border-[#5C4033] overflow-hidden group hover:border-[#D4AF37] transition-all duration-300"
             >
-                <div className="relative overflow-hidden h-48">
+                <div className="relative overflow-hidden h-40 sm:h-48">
                   <img
                     src={dish.image}
                     alt={dish.name}
@@ -402,15 +402,15 @@ export default function Home() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2 gold-accent">
+                <div className="p-3 sm:p-4 md:p-6">
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold mb-1 sm:mb-2 gold-accent">
                     {dish.name}
                   </h3>
-                  <p className="text-[#D4C5B9] text-sm mb-4">
+                  <p className="text-[#D4C5B9] text-xs sm:text-sm mb-2 sm:mb-3 md:mb-4">
                     {dish.description}
                   </p>
                   <div className="flex items-center justify-between">
-                    <span className="text-[#D4AF37] font-bold text-lg">
+                    <span className="text-[#D4AF37] font-bold text-base sm:text-lg md:text-lg">
                       {dish.price}
                     </span>
                     <button
@@ -425,7 +425,7 @@ export default function Home() {
                 </div>
               </Card>
             )) : (
-              <div className="col-span-full text-center py-12">
+              <div className="col-span-full text-center py-8 md:py-12">
                 <p className="text-[#D4C5B9]">Carregando pratos especiais...</p>
               </div>
             )}
@@ -434,9 +434,9 @@ export default function Home() {
       </section>
 
       {/* ===== CHEF & TRADIÇÃO ===== */}
-      <section id="chef" className="py-20 bg-[#2C1810] border-t border-[#5C4033]">
+      <section id="chef" className="py-12 md:py-16 lg:py-20 bg-[#2C1810] border-t border-[#5C4033]">
         <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-12 items-center">
             {/* Chef Carousel */}
             <div className="relative">
               <div className="luxury-border p-2">
@@ -450,34 +450,34 @@ export default function Home() {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a]/50 to-transparent"></div>
                 </div>
                 {/* Carousel Controls */}
-                <div className="flex justify-center gap-3 mt-6">
+                <div className="flex justify-center gap-2 sm:gap-3 mt-4 md:mt-6">
                   {chefImages.map((_, idx) => (
                     <button
                       key={idx}
                       onClick={() => setActiveTab(idx)}
-                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                        activeTab === idx ? "bg-[#D4AF37] w-8" : "bg-[#5C4033] hover:bg-[#D4AF37]/50"
+                      className={`w-2 sm:w-3 h-2 sm:h-3 rounded-full transition-all duration-300 ${
+                        activeTab === idx ? "bg-[#D4AF37] w-6 sm:w-8" : "bg-[#5C4033] hover:bg-[#D4AF37]/50"
                       }`}
                       title={`Foto ${idx + 1}`}
                     />
                   ))}
                 </div>
               </div>
-              <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-[#D4AF37] opacity-10 rounded-full blur-3xl"></div>
+              <div className="absolute -bottom-4 -right-4 w-24 sm:w-28 md:w-32 h-24 sm:h-28 md:h-32 bg-[#D4AF37] opacity-10 rounded-full blur-3xl"></div>
             </div>
 
             {/* Content */}
             <div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-5 md:mb-6">
                 O Chef & a <span className="gold-accent">Tradição</span>
               </h2>
-              <p className="text-[#D4C5B9] text-lg mb-6 leading-relaxed">
+              <p className="text-[#D4C5B9] text-sm sm:text-base md:text-lg mb-4 sm:mb-5 md:mb-6 leading-relaxed">
                 Com mais de 20 anos de experiência, o Chef Nunes traz a
                 autenticidade da culinária japonesa para Petrópolis. Cada prato
                 é preparado com rigor técnico e seleção minuciosa dos melhores
                 peixes frescos importados.
               </p>
-              <p className="text-[#D4C5B9] text-lg mb-8 leading-relaxed">
+              <p className="text-[#D4C5B9] text-sm sm:text-base md:text-lg mb-6 sm:mb-8 md:mb-8 leading-relaxed">
                 Nossa filosofia é simples: qualidade premium, técnica impecável
                 e respeito à tradição japonesa. Cada nigiri é uma obra de arte.
               </p>
@@ -494,17 +494,17 @@ export default function Home() {
       {/* ===== LOCALIZAÇÃO ===== */}
       <section
         id="location"
-        className="py-20 bg-[#2C1810] border-t border-[#5C4033]"
+        className="py-12 md:py-16 lg:py-20 bg-[#2C1810] border-t border-[#5C4033]"
       >
         <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <div className="text-center mb-8 md:mb-12 lg:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 md:mb-4">
               Localização & <span className="gold-accent">Experiência</span>
             </h2>
-            <div className="h-1 w-24 bg-[#D4AF37] mx-auto"></div>
+            <div className="h-1 w-20 sm:w-24 bg-[#D4AF37] mx-auto"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-12">
             {/* Map Placeholder */}
             <div className="luxury-border p-2">
               <div className="bg-[#5C4033] h-96 flex items-center justify-center rounded overflow-hidden">
@@ -522,27 +522,27 @@ export default function Home() {
             </div>
 
             {/* Info */}
-            <div className="space-y-8">
+            <div className="space-y-6 md:space-y-8">
               <div>
-                <h3 className="text-2xl font-bold mb-4 gold-accent">
+                <h3 className="text-xl sm:text-2xl font-bold mb-3 md:mb-4 gold-accent">
                   Petrópolis
                 </h3>
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3">
-                    <MapPin className="text-[#D4AF37] mt-1 flex-shrink-0" />
-                    <div className="text-[#D4C5B9]">
+                <div className="space-y-2 md:space-y-3">
+                  <div className="flex items-start gap-2 md:gap-3">
+                    <MapPin className="text-[#D4AF37] mt-1 flex-shrink-0 w-4 h-4 md:w-5 md:h-5" />
+                    <div className="text-[#D4C5B9] text-xs sm:text-sm md:text-base">
                       <p><strong>Kinpai Sushi Bar</strong></p>
                       <p>R. Gonçalves Dias, 423 - Valparaíso</p>
                       <p>Petrópolis - RJ, 25655-122</p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <Phone className="text-[#D4AF37] mt-1 flex-shrink-0" />
-                    <a href="tel:+5524988622" className="text-[#D4C5B9] hover:text-[#D4AF37] transition">
+                  <div className="flex items-start gap-2 md:gap-3">
+                    <Phone className="text-[#D4AF37] mt-1 flex-shrink-0 w-4 h-4 md:w-5 md:h-5" />
+                    <a href="tel:+5524988622" className="text-[#D4C5B9] hover:text-[#D4AF37] transition text-xs sm:text-sm md:text-base">
                       (24) 2248-8622
                     </a>
                   </div>
-                  <div className="flex items-start gap-3">
+                  <div className="flex items-start gap-2 md:gap-3">
                     <Clock className="text-[#D4AF37] mt-1 flex-shrink-0" />
                     <div className="text-[#D4C5B9]">
                       <p>Seg-Sab: 12h - 23:30h</p>
@@ -553,12 +553,12 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="flex gap-4 mt-8">
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 mt-6 md:mt-8">
                 <a
                   href="https://www.ifood.com.br/delivery/petropolis-rj/kinpai-sushi-valparaiso/30557874-9aa9-4d08-a2b9-080cdc921a9f"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 cta-button bg-[#C41E3A] hover:bg-[#A01729] text-[#F5F1E8] text-center"
+                  className="flex-1 cta-button bg-[#C41E3A] hover:bg-[#A01729] text-[#F5F1E8] text-center text-xs sm:text-sm md:text-base py-2 sm:py-2.5 md:py-3"
                 >
                   Pedir no iFood
                 </a>
@@ -566,7 +566,7 @@ export default function Home() {
                   href="https://xmenu.com.br/pedidos/?loja=19665"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 cta-button bg-[#C41E3A] hover:bg-[#A01729] text-[#F5F1E8] text-center"
+                  className="flex-1 cta-button bg-[#C41E3A] hover:bg-[#A01729] text-[#F5F1E8] text-center text-xs sm:text-sm md:text-base py-2 sm:py-2.5 md:py-3"
                 >
                   Pedir no Menu
                 </a>
