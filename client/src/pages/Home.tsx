@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ChevronRight, MapPin, Phone, Clock, Instagram, Facebook, Star, Plus, ShoppingBag } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
+import { useLocation } from "wouter";
 import HeroCarousel from "@/components/HeroCarousel";
 import { useCart } from "@/contexts/CartContext";
 import CartButton from "@/components/CartButton";
@@ -27,6 +28,7 @@ interface MenuItem {
 }
 
 export default function Home() {
+  const [, navigate] = useLocation();
   const [activeTab, setActiveTab] = useState(0);
   const [showOrderModal, setShowOrderModal] = useState(false);
   const [showCart, setShowCart] = useState(false);
@@ -85,16 +87,38 @@ export default function Home() {
     "/images/chef/chef (3).jpeg",
   ];
 
-  // Carregar pratos aleatórios do cardápio
+  // Carregar pratos aleatórios do cardápio (com FILTRO para pratos com foto)
   useEffect(() => {
     fetch("/menu_data.json")
       .then((response) => response.json())
       .then((data: MenuItem[]) => {
+        // Filtrar apenas pratos com imagem válida
+        const dishesWithImages = data.filter(item => item.image_url && item.image_url.trim() !== "");
+        
         // Selecionar 4 pratos aleatórios
-        const shuffled = [...data].sort(() => Math.random() - 0.5);
+        const shuffled = [...dishesWithImages].sort(() => Math.random() - 0.5);
         setRandomDishes(shuffled.slice(0, 4));
       })
       .catch((error) => console.error("Erro ao carregar menu:", error));
+  }, []);
+
+  // AUTO-CARROSSEL de pratos (5 segundos) - APENAS COM IMAGENS
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetch("/menu_data.json")
+        .then((response) => response.json())
+        .then((data: MenuItem[]) => {
+          // Filtrar apenas pratos com imagem
+          const dishesWithImages = data.filter(item => item.image_url && item.image_url.trim() !== "");
+          
+          // Selecionar 4 pratos aleatórios
+          const shuffled = [...dishesWithImages].sort(() => Math.random() - 0.5);
+          setRandomDishes(shuffled.slice(0, 4));
+        })
+        .catch((error) => console.error("Erro ao carregar menu:", error));
+    }, 5000); // Troca a cada 5 segundos
+    
+    return () => clearInterval(interval);
   }, []);
 
   // Carrossel automático do chef (3 segundos)
@@ -130,16 +154,6 @@ export default function Home() {
       name: dishName,
       price: priceInCents,
     });
-  };
-
-  const handleRefreshDishes = () => {
-    fetch("/menu_data.json")
-      .then((response) => response.json())
-      .then((data: MenuItem[]) => {
-        const shuffled = [...data].sort(() => Math.random() - 0.5);
-        setRandomDishes(shuffled.slice(0, 4));
-      })
-      .catch((error) => console.error("Erro ao carregar menu:", error));
   };
 
   const handleMainCTA = () => {
@@ -294,9 +308,9 @@ export default function Home() {
       </section>
 
       {/* ===== 20 ANOS DE HISTÓRIA ===== */}
-      <section id="history" className="py-20 bg-[#2C1810] border-t border-[#5C4033]">
+      <section id="history" className="py-16 md:py-24 bg-[#2C1810] border-t border-[#5C4033]">
         <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
             {/* Video */}
             <div className="relative">
               <div className="luxury-border p-2">
@@ -307,48 +321,56 @@ export default function Home() {
                   poster="/images/hero-sushi-premium.jpg"
                 />
               </div>
-              <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-[#D4AF37] opacity-10 rounded-full blur-3xl"></div>
+              <div className="absolute -bottom-4 -right-4 w-24 md:w-32 h-24 md:h-32 bg-[#D4AF37] opacity-10 rounded-full blur-3xl"></div>
             </div>
 
             {/* Content */}
             <div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6">
                 20 Anos de <span className="gold-accent">História</span>
               </h2>
-              <p className="text-[#D4C5B9] text-lg mb-6 leading-relaxed">
+              <p className="text-[#D4C5B9] text-base md:text-lg mb-4 md:mb-6 leading-relaxed">
                 Nossa história continua. Desde o início, o Kinpai se dedica a trazer a autenticidade e qualidade da culinária japonesa para Petrópolis e Valparaíso.
               </p>
-              <p className="text-[#D4C5B9] text-lg mb-8 leading-relaxed">
+              <p className="text-[#D4C5B9] text-base md:text-lg mb-6 md:mb-8 leading-relaxed">
                 Ao longo de duas décadas, consolidamos nossa reputação através de experiências memoráveis e um compromisso inabalável com a excelência.
               </p>
               
               {/* Services Grid */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-[#1a1a1a] p-4 rounded border border-[#5C4033] hover:border-[#D4AF37] transition">
-                  <h3 className="text-[#D4AF37] font-bold mb-2">Rodízio</h3>
-                  <p className="text-[#D4C5B9] text-sm">Experiência completa</p>
+              <div className="grid grid-cols-2 gap-3 md:gap-4 mb-6 md:mb-8">
+                <div className="bg-[#1a1a1a] p-3 md:p-4 rounded border border-[#5C4033] hover:border-[#D4AF37] transition">
+                  <h3 className="text-[#D4AF37] font-bold text-sm md:text-base mb-1 md:mb-2">Rodízio</h3>
+                  <p className="text-[#D4C5B9] text-xs md:text-sm">Experiência completa</p>
                 </div>
-                <div className="bg-[#1a1a1a] p-4 rounded border border-[#5C4033] hover:border-[#D4AF37] transition">
-                  <h3 className="text-[#D4AF37] font-bold mb-2">Eventos</h3>
-                  <p className="text-[#D4C5B9] text-sm">Celebrações especiais</p>
+                <div className="bg-[#1a1a1a] p-3 md:p-4 rounded border border-[#5C4033] hover:border-[#D4AF37] transition">
+                  <h3 className="text-[#D4AF37] font-bold text-sm md:text-base mb-1 md:mb-2">Eventos</h3>
+                  <p className="text-[#D4C5B9] text-xs md:text-sm">Celebrações especiais</p>
                 </div>
-                <div className="bg-[#1a1a1a] p-4 rounded border border-[#5C4033] hover:border-[#D4AF37] transition">
-                  <h3 className="text-[#D4AF37] font-bold mb-2">Delivery</h3>
-                  <p className="text-[#D4C5B9] text-sm">Entrega rápida</p>
+                <div className="bg-[#1a1a1a] p-3 md:p-4 rounded border border-[#5C4033] hover:border-[#D4AF37] transition">
+                  <h3 className="text-[#D4AF37] font-bold text-sm md:text-base mb-1 md:mb-2">Delivery</h3>
+                  <p className="text-[#D4C5B9] text-xs md:text-sm">Entrega rápida</p>
                 </div>
-                <div className="bg-[#1a1a1a] p-4 rounded border border-[#5C4033] hover:border-[#D4AF37] transition">
-                  <h3 className="text-[#D4AF37] font-bold mb-2">Almoço Executivo</h3>
-                  <p className="text-[#D4C5B9] text-sm">Menu especial</p>
+                <div className="bg-[#1a1a1a] p-3 md:p-4 rounded border border-[#5C4033] hover:border-[#D4AF37] transition">
+                  <h3 className="text-[#D4AF37] font-bold text-sm md:text-base mb-1 md:mb-2">Almoço Executivo</h3>
+                  <p className="text-[#D4C5B9] text-xs md:text-sm">Menu especial</p>
                 </div>
-                <div className="bg-[#1a1a1a] p-4 rounded border border-[#5C4033] hover:border-[#D4AF37] transition">
-                  <h3 className="text-[#D4AF37] font-bold mb-2">À La Carte</h3>
-                  <p className="text-[#D4C5B9] text-sm">Seleção premium</p>
+                <div className="bg-[#1a1a1a] p-3 md:p-4 rounded border border-[#5C4033] hover:border-[#D4AF37] transition">
+                  <h3 className="text-[#D4AF37] font-bold text-sm md:text-base mb-1 md:mb-2">À La Carte</h3>
+                  <p className="text-[#D4C5B9] text-xs md:text-sm">Seleção premium</p>
                 </div>
-                <div className="bg-[#1a1a1a] p-4 rounded border border-[#5C4033] hover:border-[#D4AF37] transition">
-                  <h3 className="text-[#D4AF37] font-bold mb-2">Dose Dupla</h3>
-                  <p className="text-[#D4C5B9] text-sm">Promoção especial</p>
+                <div className="bg-[#1a1a1a] p-3 md:p-4 rounded border border-[#5C4033] hover:border-[#D4AF37] transition">
+                  <h3 className="text-[#D4AF37] font-bold text-sm md:text-base mb-1 md:mb-2">Dose Dupla</h3>
+                  <p className="text-[#D4C5B9] text-xs md:text-sm">Promoção especial</p>
                 </div>
               </div>
+
+              {/* CTA Button */}
+              <button
+                onClick={() => navigate('/history')}
+                className="w-full md:w-auto bg-[#D4AF37] hover:bg-[#E5C158] text-[#1a1a1a] font-bold uppercase tracking-widest py-3 px-6 rounded transition transform hover:scale-105 text-sm md:text-base"
+              >
+                Conheça Nossa História
+              </button>
             </div>
           </div>
         </div>
@@ -362,12 +384,7 @@ export default function Home() {
               Favoritos da <span className="gold-accent">Casa</span>
             </h2>
             <div className="h-1 w-24 bg-[#D4AF37] mx-auto"></div>
-            <button
-              onClick={handleRefreshDishes}
-              className="mt-6 text-[#D4AF37] hover:text-[#F5F1E8] transition text-sm font-semibold flex items-center gap-2 mx-auto"
-            >
-              🔄 Ver outras sugestões
-            </button>
+            <p className="text-[#D4C5B9] text-sm mt-4">Atualizamos nossos favoritos a cada 5 segundos</p>
           </div>
 
           {/* Dishes Grid */}
