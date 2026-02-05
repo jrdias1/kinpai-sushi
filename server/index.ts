@@ -1,6 +1,7 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
+import { isAdminEmailEnv } from "../shared/admin-config.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -44,6 +45,32 @@ app.get("/api/health", (req, res) => {
 // ============================================================================
 // API Routes
 // ============================================================================
+
+// Admin email permission check
+// SECURITY NOTE: This endpoint is for internal use only.
+// In production, add authentication and rate limiting to prevent email enumeration.
+app.post("/api/auth/check-admin", (req, res) => {
+  try {
+    const { email } = req.body;
+
+    if (!email) {
+      return res.status(400).json({ error: "Email is required" });
+    }
+
+    const isAdmin = isAdminEmailEnv(email);
+
+    // Return only the boolean result to prevent email enumeration
+    res.json({
+      isAdmin,
+      message: isAdmin
+        ? "Email has admin permissions"
+        : "Email does not have admin permissions",
+    });
+  } catch (error) {
+    console.error("Admin check error:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
 
 // Exemplo de rota de pedido
 app.post("/api/orders", (req, res) => {

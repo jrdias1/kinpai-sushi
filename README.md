@@ -77,6 +77,13 @@ vercel --prod
 
 Copie `.env.example` para `.env` e configure as variáveis necessárias.
 
+### Permissões Administrativas
+
+O sistema possui controle de permissões por email. Veja [ADMIN_PERMISSIONS.md](./ADMIN_PERMISSIONS.md) para detalhes sobre como gerenciar emails autorizados.
+
+**Email Administrativo Atual:**
+- ✅ sitekinpaisushibar@gmail.com
+
 ## ⚠️ Importante
 
 A pasta `bkp/` contém arquivos de documentação e configurações antigas que foram movidos para manter o projeto limpo. Esses arquivos não são necessários para o funcionamento do site.
