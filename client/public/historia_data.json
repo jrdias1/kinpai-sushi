@@ -1,0 +1,41 @@
+{
+  "historia": {
+    "anos": "18 Anos de Tradição",
+    "titulo": "Com 18 anos de dedicação, o Kinpai é um restaurante que celebra a autenticidade da culinária japonesa",
+    "descricao": "Combinando sabores clássicos com um toque contemporâneo, cada prato é uma verdadeira viagem ao Japão. Preparado com ingredientes frescos e técnicas que valorizam a essência da gastronomia Oriental, o Kinpai se consolidou como referência em sushi premium em Petrópolis.",
+    "image": "/images/hitoria/18 anos.png"
+  },
+  "ambiente": {
+    "titulo": "Sofisticação e Prazer Gastronômico",
+    "descricao": "Nossos ambientes são um convite ao refinamento e à excelência culinária. A cada detalhe, buscamos criar uma atmosfera de luxo contemporâneo onde a tradição japonesa encontra o conforto moderno.",
+    "subDescricao": "Venha vivenciar uma experiência única de sabores, elegância e momentos inesquecíveis.",
+    "video": "/images/hitoria/ambientes.mp4"
+  },
+  "chef": {
+    "titulo": "Arte e Expertise",
+    "descricao": "Nosso chef traz técnicas refinadas e um profundo conhecimento da culinária japonesa. Com seleção rigorosa de ingredientes importados, cada prato é preparado com dedicação absoluta para proporcionar uma experiência gastronômica extraordinária.",
+    "subTitulo": "Qualidade em Cada Detalhe",
+    "subDescricao": "A paixão pelo ofício reflete em cada movimento, em cada corte, em cada combinação de sabores que chega até sua mesa.",
+    "image": "/images/hitoria/chef.png"
+  },
+  "equipe": {
+    "titulo": "O Time Kinpai",
+    "descricao": "Esse é o time Kinpai, responsável pelo alto padrão que faz a diferença. São profissionais qualificados e dedicados que garantem a excelência do nosso restaurante.",
+    "destaque": "Agradecemos a cada um pelo trabalho impecável que sustenta nossa reputação.",
+    "image": "/images/hitoria/equipe.png"
+  },
+  "nea": {
+    "titulo": "Nea - A Visionária",
+    "subtitulo": "Uma paraibana, bem petropolitana e quase japonesa!",
+    "descricao": "Morando em Petrópolis há 30 anos e com mais de 25 anos de experiência em restaurante japonês, Nea traz ao Kinpai sua paixão pela culinária com muita criatividade, alegria e a administração de uma equipe premium com atendimento personalizado.",
+    "destaque": "São quase 18 anos se dedicando ao Kinpai e à satisfação dos seus clientes.",
+    "cta": "Conte uma história sua com a Nea!",
+    "image": "/images/hitoria/nea.png"
+  },
+  "kinpai": {
+    "titulo": "20 Anos de Excelência",
+    "descricao": "Celebramos duas décadas de tradição, qualidade e dedicação. Cada ano representa um compromisso renovado com a excelência culinária e a satisfação dos nossos clientes.",
+    "mensagem": "De uma pequena casa de sushi a uma referência gastronômica, o Kinpai cresceu com você.",
+    "image": "/images/hitoria/kinpai sushi 20 anos #######-02.jpg.jpeg"
+  }
+}

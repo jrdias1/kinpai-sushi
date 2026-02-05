@@ -97,11 +97,11 @@ export default function Home() {
       .catch((error) => console.error("Erro ao carregar menu:", error));
   }, []);
 
-  // Carrossel automático do chef
+  // Carrossel automático do chef (3 segundos)
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveTab((prev) => (prev + 1) % chefImages.length);
-    }, 4000); // Troca a cada 4 segundos
+    }, 3000); // Troca a cada 3 segundos
     return () => clearInterval(interval);
   }, [chefImages.length]);
 
@@ -220,7 +220,7 @@ export default function Home() {
 
         {/* Content */}
         <div className="relative z-10 container max-w-4xl mx-auto px-4 text-center pt-32">
-          <h1 className="text-6xl md:text-8xl font-bold mb-8 text-[#F5F1E8] leading-tight drop-shadow-lg">
+          <h1 className="text-8xl md:text-9xl font-bold mb-12 text-[#F5F1E8] leading-tight drop-shadow-lg">
             Kinpai <span className="gold-accent">Sushi</span>
           </h1>
           <p className="text-xl md:text-2xl text-[#D4C5B9] mb-12 font-light drop-shadow">
@@ -492,7 +492,7 @@ export default function Home() {
             <div className="luxury-border p-2">
               <div className="bg-[#5C4033] h-96 flex items-center justify-center rounded overflow-hidden">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3603.123456789!2d-43.2045!3d-22.5055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9bda5c8b29b2d9%3A0x123456!2sKinpai%20Sushi%20Bar!5e0!3m2!1spt-BR!2sbr!4v1234567890"
+                  src="https://www.google.com/maps?q=Kinpai+Sushi+R.+Gon%C3%A7alves+Dias+423+Petr%C3%B3polis&hl=pt-BR&z=17&output=embed"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -652,14 +652,15 @@ export default function Home() {
                 href="https://www.instagram.com/essencial_comunicacao/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:opacity-80 transition"
+                className="hover:opacity-80 transition flex items-center gap-2"
                 title="Essencial Comunicação"
               >
                 <img
-                  src="/images/logoessencial.png"
+                  src="/images/logoessencial.jpg"
                   alt="Essencial Comunicação"
-                  className="h-12 w-auto object-contain"
+                  className="h-8 w-8 rounded-full object-cover"
                 />
+                <span className="sr-only">Essencial Comunicação</span>
               </a>
             </div>
             <div className="text-center text-[#D4C5B9] text-xs">
@@ -671,3 +672,4 @@ export default function Home() {
     </div>
   );
 }
+
