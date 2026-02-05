@@ -6,6 +6,7 @@ import { useState, useEffect, useRef } from "react";
 import { useCart } from "@/contexts/CartContext";
 import CartButton from "@/components/CartButton";
 import CartDrawer from "@/components/CartDrawer";
+import HeroCarousel from "@/components/HeroCarousel";
 
 interface MenuItem {
   name: string;
@@ -30,6 +31,13 @@ export default function Menu() {
   const [showCart, setShowCart] = useState(false);
   const { addItem, getTotalItems } = useCart();
   const lastClickRef = useRef<number>(0);
+
+  const carouselImages = [
+    "/images/hero-sushi-premium.jpg",
+    "/images/carousel-1-sushi-close.jpg",
+    "/images/carousel-2-chef-hands.jpg",
+    "/images/carousel-3-plating.jpg",
+  ];
 
   // Categorias organizadas
   const categories = [
@@ -223,29 +231,38 @@ export default function Menu() {
         </div>
       </header>
 
-      {/* HERO SECTION */}
-      <section className="pt-32 pb-16 bg-gradient-to-b from-[#2C1810] to-[#1a1a1a]">
-        <div className="container">
-          <div className="text-center mb-12">
-            <h1 className="text-5xl md:text-6xl font-bold mb-4">
+      {/* HERO SECTION - Com Carrossel Background */}
+      <section className="relative pt-20 pb-12 md:pb-16">
+        {/* Background Carrossel */}
+        <div className="absolute inset-0 top-0 h-80 md:h-96">
+          <HeroCarousel images={carouselImages} autoPlayInterval={5000} />
+        </div>
+
+        {/* Overlay */}
+        <div className="absolute inset-0 top-0 h-80 md:h-96 bg-gradient-to-b from-black/30 via-black/50 to-[#1a1a1a]"></div>
+
+        {/* Content */}
+        <div className="container relative z-10">
+          <div className="text-center mb-8 md:mb-12 pt-20 md:pt-24">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-3 md:mb-4">
               Nosso <span className="gold-accent">Cardápio</span>
             </h1>
-            <p className="text-[#D4C5B9] text-lg max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base md:text-lg text-[#D4C5B9] max-w-2xl mx-auto px-3">
               Explore nossa seleção premium de pratos japoneses autênticos
             </p>
-            <div className="h-1 w-24 bg-[#D4AF37] mx-auto mt-6"></div>
+            <div className="h-1 w-20 sm:w-24 bg-[#D4AF37] mx-auto mt-4 md:mt-6"></div>
           </div>
 
           {/* SEARCH BAR */}
-          <div className="max-w-2xl mx-auto mb-12">
+          <div className="max-w-2xl mx-auto mb-8 md:mb-12 px-3">
             <div className="relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#D4AF37]" />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#D4AF37]" size={20} />
               <Input
                 type="text"
                 placeholder="Buscar pratos..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-12 pr-12 h-14 bg-[#2C1810] border-[#5C4033] text-[#F5F1E8] placeholder:text-[#D4C5B9]/50 focus:border-[#D4AF37]"
+                className="pl-12 pr-12 h-12 md:h-14 bg-[#2C1810] border-[#5C4033] text-[#F5F1E8] placeholder:text-[#D4C5B9]/50 focus:border-[#D4AF37] text-sm md:text-base"
               />
               {searchTerm && (
                 <button
@@ -259,12 +276,12 @@ export default function Menu() {
           </div>
 
           {/* CATEGORIES */}
-          <div className="flex gap-3 overflow-x-auto pb-4 mb-8 scrollbar-hide">
+          <div className="flex gap-2 md:gap-3 overflow-x-auto pb-4 mb-0 scrollbar-hide px-3 md:px-0">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-3 rounded-full whitespace-nowrap font-semibold transition ${
+                className={`px-3 md:px-6 py-2 md:py-3 rounded-full whitespace-nowrap font-semibold transition text-xs sm:text-sm md:text-base ${
                   selectedCategory === category
                     ? "bg-[#D4AF37] text-[#1a1a1a]"
                     : "bg-[#2C1810] text-[#D4C5B9] border border-[#5C4033] hover:border-[#D4AF37]"
@@ -278,23 +295,23 @@ export default function Menu() {
       </section>
 
       {/* MENU GRID */}
-      <section className="py-12 bg-[#1a1a1a]">
+      <section className="py-8 md:py-12 bg-[#1a1a1a]">
         <div className="container">
           {filteredData.length === 0 ? (
-            <div className="text-center py-20">
-              <p className="text-[#D4C5B9] text-xl">
+            <div className="text-center py-12 md:py-20">
+              <p className="text-[#D4C5B9] text-base md:text-xl">
                 Nenhum prato encontrado com "{searchTerm}"
               </p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
               {filteredData.map((item, idx) => (
                 <Card
                   key={idx}
-                  className="bg-[#2C1810] border-[#5C4033] overflow-hidden group hover:border-[#D4AF37] transition-all duration-300 cursor-pointer"
+                  className="bg-[#2C1810] border-[#5C4033] overflow-hidden group hover:border-[#D4AF37] transition-all duration-300 cursor-pointer flex flex-col"
                   onClick={() => handleOrderClick(item)}
                 >
-                  <div className="relative overflow-hidden h-56">
+                  <div className="relative overflow-hidden h-48 md:h-56">
                     {item.image_url &&
                     !item.image_url.includes("no-image.png") ? (
                       <img
@@ -305,33 +322,33 @@ export default function Menu() {
                       />
                     ) : (
                       <div className="w-full h-full bg-[#1a1a1a] flex items-center justify-center">
-                        <span className="text-[#5C4033] text-sm">
+                        <span className="text-[#5C4033] text-xs md:text-sm text-center px-2">
                           Imagem não disponível
                         </span>
                       </div>
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-transparent opacity-60"></div>
-                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center bg-black/40">
-                      <span className="text-[#D4AF37] font-bold text-sm uppercase tracking-widest">Clique para pedir</span>
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center bg-black/40">
+                      <span className="text-[#D4AF37] font-bold text-xs md:text-sm uppercase tracking-widest">Clique para pedir</span>
                     </div>
-                    <div className="absolute bottom-0 left-0 right-0 p-4">
-                      <span className="text-[#D4AF37] font-bold text-xl">
+                    <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4">
+                      <span className="text-[#D4AF37] font-bold text-lg md:text-xl">
                         {item.price}
                       </span>
                     </div>
                   </div>
-                  <div className="p-5 flex flex-col flex-1">
-                    <h3 className="text-lg font-bold mb-2 gold-accent line-clamp-2">
+                  <div className="p-4 md:p-5 flex flex-col flex-1">
+                    <h3 className="text-base md:text-lg font-bold mb-2 gold-accent line-clamp-2">
                       {item.name}
                     </h3>
-                    <p className="text-[#D4C5B9] text-sm line-clamp-2 min-h-[40px] flex-1">
+                    <p className="text-[#D4C5B9] text-xs md:text-sm line-clamp-2 min-h-[40px] flex-1">
                       {item.description || "Delicioso prato japonês"}
                     </p>
-                    <div className="flex items-center justify-between mt-4">
-                      <span className="text-[#D4AF37] font-bold">{item.price}</span>
+                    <div className="flex items-center justify-between mt-3 md:mt-4 gap-2">
+                      <span className="text-[#D4AF37] font-bold text-sm md:text-base">{item.price}</span>
                       <button
                         onClick={() => handleOrderClick(item)}
-                        className="bg-[#D4AF37] hover:bg-[#E5C158] text-[#1a1a1a] p-2 rounded transition flex items-center gap-1 font-semibold text-sm md:text-base"
+                        className="bg-[#D4AF37] hover:bg-[#E5C158] text-[#1a1a1a] p-2 md:p-2 rounded transition flex items-center gap-1 font-semibold text-xs md:text-sm"
                       >
                         <Plus size={16} className="md:w-5 md:h-5" />
                         <span className="hidden md:inline">Adicionar</span>
@@ -348,7 +365,7 @@ export default function Menu() {
 
 
 
-      {/* CART BUTTON - MOBILE ONLY */}
+      {/* CART BUTTON - MOBILE ONLY - Floating */}
       <div className="md:hidden">
         <CartButton onClick={() => setShowCart(true)} />
       </div>
@@ -361,18 +378,16 @@ export default function Menu() {
         href="https://wa.me/5524988622"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-40 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:scale-110 transition-transform flex items-center justify-center"
+        className="fixed bottom-20 md:bottom-6 right-6 z-40 bg-[#25D366] text-white p-3 md:p-4 rounded-full shadow-lg hover:scale-110 transition-transform flex items-center justify-center"
         title="Fale conosco no WhatsApp"
       >
-        <MessageCircle size={32} />
+        <MessageCircle size={28} className="md:w-8 md:h-8" />
       </a>
 
       {/* FOOTER */}
-      <footer className="bg-[#0f0f0f] border-t border-[#5C4033] py-12">
+      <footer className="bg-[#0f0f0f] border-t border-[#5C4033] py-8 md:py-12 text-center">
         <div className="container">
-          <div className="text-center text-[#D4C5B9] text-sm">
-            <p>&copy; 2026 Kinpai Sushi. Todos os direitos reservados.</p>
-          </div>
+          <p className="text-[#D4C5B9] text-xs md:text-sm">&copy; 2026 Kinpai Sushi. Todos os direitos reservados.</p>
         </div>
       </footer>
     </div>
