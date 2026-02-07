@@ -1,0 +1,26 @@
+{
+  "name": "Kinpai Sushi - Culinária Japonesa Premium em Petrópolis RJ",
+  "short_name": "Kinpai Sushi",
+  "description": "A arte autêntica da culinária japonesa em um ambiente sofisticado. 20 anos de tradição e excelência.",
+  "icons": [
+    {
+      "src": "/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "theme_color": "#E7C36B",
+  "background_color": "#070707",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/",
+  "orientation": "portrait-primary",
+  "categories": ["food", "restaurant"]
+}

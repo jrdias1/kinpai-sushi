@@ -1,0 +1,20 @@
+# Robots.txt para Kinpai Sushi
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /.next
+Disallow: /private
+
+# Google Bot
+User-agent: Googlebot
+Allow: /
+
+# Bing Bot
+User-agent: Bingbot
+Allow: /
+
+# Sitemap
+Sitemap: https://kinpai-sushiv2.vercel.app/sitemap.xml
+
+# Crawl delay (1 segundo)
+Crawl-delay: 1
